@@ -1,0 +1,30 @@
+.roomSuccess {
+	 background-color: #60d09d;
+	 color: white !important;
+	 padding: 10px;
+	 box-shadow: 3px 3px 3px 3px #ccc;
+	 /* border-radius: .5rem;*/
+
+}
+.roomSuccess a, .roomDanger a {
+	text-decoration: none;
+	color: white;
+
+}
+
+.roomDanger {
+	background-color: #ff5560;
+	color: white !important;
+	 padding: 10px;
+	 box-shadow: 3px 3px 3px 3px #ccc;
+	 /*border-radius: .5rem;*/
+}
+
+.roomSuccess:hover {
+	box-shadow: none;
+	transition: all .5s;
+}
+.roomDanger:hover {
+	box-shadow: none;
+	transition: all .5s;
+}

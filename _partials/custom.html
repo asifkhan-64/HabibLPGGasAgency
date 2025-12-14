@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Culinary Haven</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0ldz1aQZt0hW+u9-R2O4Lp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* Custom CSS for Animations and Styling */
+
+      /* General Body Styling */
+      body {
+        padding-top: 56px; /* Space for fixed-top navbar */
+        font-family: Arial, sans-serif;
+      }
+
+      /* Navbar Style */
+      #main-nav {
+        transition: background-color 0.3s ease-in-out;
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.8
+        ); /* Slightly transparent by default */
+      }
+
+      /* Hero Section (Parallax) */
+      .hero-section {
+        background: url("https://picsum.photos/1920/1080?random=1") no-repeat
+          center center;
+        background-size: cover;
+        height: 100vh;
+        /* Parallax base style */
+        background-attachment: fixed;
+        box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4); /* Dark overlay */
+      }
+
+      /* --- ANIMATION STYLES --- */
+
+      /* Hidden state for elements before they are scrolled into view */
+      .animated-element {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+      }
+
+      /* Visible state (triggered by JavaScript) */
+      .animated-element.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Specific animations based on direction */
+      .fade-in-up {
+        transform: translateY(30px);
+      }
+      .fade-in-left {
+        transform: translateX(-30px);
+      }
+      .fade-in-right {
+        transform: translateX(30px);
+      }
+
+      /* Delay for staggering the menu cards */
+      .delay-1 > .col:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+      .delay-1 > .col:nth-child(2) {
+        transition-delay: 0.3s;
+      }
+      .delay-1 > .col:nth-child(3) {
+        transition-delay: 0.5s;
+      }
+
+      .delay-2 > .col:nth-child(1) {
+        transition-delay: 0.2s;
+      }
+      .delay-2 > .col:nth-child(2) {
+        transition-delay: 0.4s;
+      }
+      .delay-2 > .col:nth-child(3) {
+        transition-delay: 0.6s;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="main-nav">
+      <div class="container">
+        <a class="navbar-brand" href="#">**Culinary Haven**</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#hero">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header
+      class="hero-section text-center text-white d-flex align-items-center justify-content-center"
+      id="hero"
+    >
+      <div class="container animated-element fade-in-up">
+        <h1 class="display-1 fw-bold mb-3">Welcome to The Haven</h1>
+        <p class="lead mb-4">Experience the art of fine dining.</p>
+        <a href="#menu" class="btn btn-outline-light btn-lg">View Our Menu</a>
+      </div>
+    </header>
+
+    <section class="py-5" id="about">
+      <div class="container animated-element fade-in-left">
+        <h2 class="text-center mb-4">Our Story</h2>
+        <p class="text-center lead">
+          Born from a passion for fresh, local ingredients, The Culinary Haven
+          offers a modern twist on classic cuisine. Every dish is a journey.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-5 bg-light" id="menu">
+      <div class="container">
+        <h2 class="text-center mb-5">Our Signature Menu</h2>
+
+        <h3 class="mt-4 animated-element fade-in-right">Appetizers</h3>
+        <div
+          class="row row-cols-1 row-cols-md-3 g-4 mb-5 animated-element fade-in-up delay-1"
+        >
+          <div class="col">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Truffle Fries</h5>
+                <p class="card-text text-muted">$12.00</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Crab Cakes</h5>
+                <p class="card-text text-muted">$18.50</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Avocado Toast</h5>
+                <p class="card-text text-muted">$10.00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="mt-4 animated-element fade-in-right">Main Courses</h3>
+        <div
+          class="row row-cols-1 row-cols-md-3 g-4 animated-element fade-in-up delay-2"
+        >
+          <div class="col">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Seared Scallops</h5>
+                <p class="card-text text-muted">$32.00</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Filet Mignon</h5>
+                <p class="card-text text-muted">$45.00</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Vegetable Risotto</h5>
+                <p class="card-text text-muted">$24.00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5" id="contact">
+      <div class="container animated-element fade-in-right">
+        <h2 class="text-center mb-4">Book Your Table</h2>
+        <div class="text-center">
+          <p class="lead">
+            Ready to dine? Call us at **(555) 123-4567** or reserve online.
+          </p>
+          <a href="#" class="btn btn-dark btn-lg mt-3">Reserve Now</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-dark text-white py-3">
+      <div class="container text-center">
+        <p class="mb-0">&copy; 2025 The Culinary Haven. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- 1. Scroll-Based Fade-In Animation (Intersection Observer) ---
+        const animatedElements = document.querySelectorAll(".animated-element");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // Add 'visible' class when element enters viewport
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target); // Stop observing after animation
+              }
+            });
+          },
+          {
+            threshold: 0.1, // Trigger when 10% of element is visible
+          }
+        );
+
+        animatedElements.forEach((element) => {
+          observer.observe(element);
+        });
+
+        // --- 2. Parallax Effect for Hero Image (Subtle scroll-based movement) ---
+        const heroSection = document.querySelector(".hero-section");
+
+        window.addEventListener("scroll", () => {
+          // Calculate scroll position relative to the viewport height (0 to 100vh)
+          let scrollPosition = window.scrollY;
+
+          // Apply a subtle upward transform to the background to simulate parallax
+          heroSection.style.backgroundPositionY = scrollPosition * 0.5 + "px";
+        });
+      });
+    </script>
+  </body>
+</html>
