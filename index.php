@@ -1,12 +1,46 @@
+<?php
+  include("_stream/config.php");
+  
+  $valid_login = "";
+  if (isset($_POST["log_in_session"])) {
+    $user_email = $_POST["user_email"];
+    $user_password = $_POST["user_password"];
 
+    $result_query = mysqli_query($connect, "SELECT * FROM login_user WHERE email='$user_email' AND password='$user_password'");
+    //  = mysqli_query($connect, $select_user_query);
+    
+    $fetch_userQuery = mysqli_fetch_assoc($result_query);
+
+    if (empty($fetch_userQuery)) {
+        $valid_login = '<div class="alert alert-danger" style="background:#D52520; color:white" role="alert">Enter a valid Login</div>';
+    } else {
+        $user_status = $fetch_userQuery['status'];
+        $user_role = $fetch_userQuery['user_role'];
+        $id = $fetch_userQuery['id'];
+
+            if ($user_status == 1) {
+                session_start();
+                $_SESSION["user"] = $user_email;
+                $_SESSION["id"] = $id;
+                header("LOCATION:pages/dashboard.php");
+            } else {
+                $valid_login = ' <div class="alert alert-danger animate__animated animate__bounce" style="background:#D52520; color:white" role="alert">
+                <h4 class="animate__animated animate__bounce">Access Denied. You have been restricted. </h4></div>';
+            }
+        }
+    }
+
+    $get = mysqli_query($connect, "SELECT * FROM `shop_info`");
+    $fet = mysqli_fetch_assoc($get);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>Swat Fiber</title>
-        <meta content="Swat Fiber" name="description" />
+        <title><?php echo $fet['shop_title']; ?></title>
+        <meta content="<?php echo $fet['shop_title']; ?>" name="description" />
         <meta content="ThemeDesign" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
@@ -81,38 +115,7 @@
 
     </head>
 
-<?php
-  include("_stream/config.php");
-  
-  $valid_login = "";
-  if (isset($_POST["log_in_session"])) {
-    $user_email = $_POST["user_email"];
-    $user_password = $_POST["user_password"];
 
-    $result_query = mysqli_query($connect, "SELECT * FROM login_user WHERE email='$user_email' AND password='$user_password'");
-    //  = mysqli_query($connect, $select_user_query);
-    
-    $fetch_userQuery = mysqli_fetch_assoc($result_query);
-
-    if (empty($fetch_userQuery)) {
-        $valid_login = '<div class="alert alert-danger" style="background:#D52520; color:white" role="alert">Enter a valid Login</div>';
-    } else {
-        $user_status = $fetch_userQuery['status'];
-        $user_role = $fetch_userQuery['user_role'];
-        $id = $fetch_userQuery['id'];
-
-            if ($user_status == 1) {
-                session_start();
-                $_SESSION["user"] = $user_email;
-                $_SESSION["id"] = $id;
-                header("LOCATION:pages/dashboard.php");
-            } else {
-                $valid_login = ' <div class="alert alert-danger animate__animated animate__bounce" style="background:#D52520; color:white" role="alert">
-                <h4 class="animate__animated animate__bounce">Access Denied. You have been restricted. </h4></div>';
-            }
-        }
-    }
-?>
     <body class="fixed-left">
 
         <!-- Loader -->
@@ -126,10 +129,10 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-5 col-md-8">
-                                <div class="card " style="box-shadow: 3px 3px 15px 3px #E7EAED; opacity: 0.95 !important;">
+                                <div class="card " style="opacity: 0.95 !important;">
                                     <div class="card-body">
                                         <h3 class="text-center mt-0 m-b-15 animate__animated animate__bounce">
-                                            <a  class="logo logo-admin"><img src="assets/logo.png" width="18%" height="20%"> <h3 style="font-family: Lucida Handwriting">Swat Fiber</h3></a>
+                                            <a  class="logo logo-admin"><img src="assets/logo.png" width="18%" height="20%"> <h3 style="font-family: Lucida Handwriting"><?php echo $fet['shop_title']; ?></h3></a>
                                         </h3>
                 
                                         <!-- <h4 class="text-muted text-center font-18"><b>Sign In</b></h4> -->

@@ -169,115 +169,6 @@ $fet = mysqli_fetch_assoc($get);
                             </a>
                         </li>
 
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-basket"></i> <span> Packages</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="package_list.php">Package List</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-area-chart"></i> <span> Area</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="areas_list.php">Area List</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-address-book"></i> <span> Clients</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="client_add.php">Add Client</a></li>
-                                <li><a href="client_list.php">Client List</a></li>
-                                <li><a href="client_search.php">Search Client</a></li>
-                            </ul>
-                        </li>
-
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-users"></i> <span> System Users</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="user_new.php">Add User</a></li>
-                                <li><a href="users_list.php">User List</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-credit-card"></i> <span> Payments</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="client_select.php">Add Payment</a></li>
-                                <li><a href="client_payment_list.php">Payment List</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-file-invoice"></i> <span> Bill Payments</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="bill_payment.php">Add Bill Payment</a></li>
-                                <li><a href="bill_payment_list.php">Bill Payment List</a></li>
-                                <!-- <li><a href="bill_dues_list.php">Bill Dues List</a></li> -->
-                                <li><a href="generate_bill.php">Generate Bill</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-download"></i> <span> Inventory</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="inventory_add.php">Add Inventory</a></li>
-                                <li><a href="inventory_list.php">Inventory List</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-list-alt"></i> <span> Store/Line Item</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="storeline_items_list.php">Add Items List</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-info-circle"></i> <span> Installation Type</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="installation_type_list.php">Installation Type</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-desktop"></i> <span> Purchase Stock</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="select_option.php">Add Stock</a></li>
-                                <li><a href="store_stock_list.php">Store Stock List</a></li>
-                                <li><a href="line_stock_list.php">Line Stock List</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-broadcast"></i>
-                                <span> Expenses</span> <span class="menu-arrow float-right"><i
-                                        class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-
-                                <li><a href="expense_category_new.php">Expense Category</a></li>
-                                <li><a href="expense_new.php">Add Expense</a></li>
-                                <li><a href="expense_list.php">Expenses List</a></li>
-                                
-                            </ul>
-                        </li>
-
-                        <!-- <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-book"></i> <span> Reports</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="wages_report.php">Wages Report</a></li>
-                                <li><a href="utility_report.php">Utility Bills Report</a></li>
-                                <li><a href="expense_report.php">Expenses Report</a></li>
-                                <li><a href="tillone_report.php">Till 1 Report</a></li>
-                                <li><a href="tilltwo_report.php">Till 2 Report</a></li>
-                                <li><a href="weekly_summary_report.php">Weekly Summary</a></li>
-                                <li><a href="grocery_report.php">Grocery Report</a></li>
-                                <li><a href="report_daily_expense.php">Daily Expense Report</a></li>
-                            </ul>
-                        </li> -->
-                        
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-synagogue"></i> <span> Company Details </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
@@ -298,6 +189,144 @@ $fet = mysqli_fetch_assoc($get);
                                 <li><a href="backup_page.php">DB Backup</a></li>
                             </ul>
                         </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-broadcast"></i>
+                                <span> Expenses</span> <span class="menu-arrow float-right"><i
+                                        class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+
+                                <li><a href="expense_category_new.php">Expense Category</a></li>
+                                <li><a href="expense_new.php">Add Expense</a></li>
+                                <li><a href="expense_list.php">Expenses List</a></li>
+                                
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-industry"></i> <span> Vendors</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="vendor_add.php">Add Vendor</a></li>
+                                <li><a href="vendors_list.php">Vendor List</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-users"></i> <span> Customers </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="customer_add.php">Add Customer</a></li>
+                                <li><a href="customers_list.php">Customer List</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-undo"></i> <span> Recovery</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="customer_pay.php">Add Payment Details</a></li>
+                                <li><a href="customer_pay_list.php">Payment List</a></li>
+                            </ul>
+                        </li>
+
+
+                        <!-- <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-basket"></i> <span> Packages</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="package_list.php">Package List</a></li>
+                            </ul>
+                        </li> -->
+
+                        <!-- <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-area-chart"></i> <span> Area</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="areas_list.php">Area List</a></li>
+                            </ul>
+                        </li> -->
+
+                        <!-- <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-address-book"></i> <span> Clients</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="client_add.php">Add Client</a></li>
+                                <li><a href="client_list.php">Client List</a></li>
+                                <li><a href="client_search.php">Search Client</a></li>
+                            </ul>
+                        </li> -->
+
+
+                        <!-- <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-users"></i> <span> System Users</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="user_new.php">Add User</a></li>
+                                <li><a href="users_list.php">User List</a></li>
+                            </ul>
+                        </li> -->
+
+                        <!-- <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-credit-card"></i> <span> Payments</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="client_select.php">Add Payment</a></li>
+                                <li><a href="client_payment_list.php">Payment List</a></li>
+                            </ul>
+                        </li> -->
+
+                        <!-- <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-file-invoice"></i> <span> Bill Payments</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="bill_payment.php">Add Bill Payment</a></li>
+                                <li><a href="bill_payment_list.php">Bill Payment List</a></li>
+                                <li><a href="generate_bill.php">Generate Bill</a></li>
+                            </ul>
+                        </li> -->
+
+                        <!-- <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-download"></i> <span> Inventory</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="inventory_add.php">Add Inventory</a></li>
+                                <li><a href="inventory_list.php">Inventory List</a></li>
+                            </ul>
+                        </li> -->
+
+                        <!-- <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-list-alt"></i> <span> Store/Line Item</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="storeline_items_list.php">Add Items List</a></li>
+                            </ul>
+                        </li> -->
+
+                        <!-- <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-info-circle"></i> <span> Installation Type</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="installation_type_list.php">Installation Type</a></li>
+                            </ul>
+                        </li> -->
+
+                        <!-- <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-desktop"></i> <span> Purchase Stock</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="select_option.php">Add Stock</a></li>
+                                <li><a href="store_stock_list.php">Store Stock List</a></li>
+                                <li><a href="line_stock_list.php">Line Stock List</a></li>
+                            </ul>
+                        </li> -->
+
+                        
+
+                        <!-- <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-book"></i> <span> Reports</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="wages_report.php">Wages Report</a></li>
+                                <li><a href="utility_report.php">Utility Bills Report</a></li>
+                                <li><a href="expense_report.php">Expenses Report</a></li>
+                                <li><a href="tillone_report.php">Till 1 Report</a></li>
+                                <li><a href="tilltwo_report.php">Till 2 Report</a></li>
+                                <li><a href="weekly_summary_report.php">Weekly Summary</a></li>
+                                <li><a href="grocery_report.php">Grocery Report</a></li>
+                                <li><a href="report_daily_expense.php">Daily Expense Report</a></li>
+                            </ul>
+                        </li> -->
+                        
+                        
+
+                        
 
                     </ul>
                 </div>

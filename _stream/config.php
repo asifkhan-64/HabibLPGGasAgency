@@ -1,2 +1,2 @@
 <?php
-$connect = mysqli_connect("localhost", "root", "", "ubaid_project");
+$connect = mysqli_connect("localhost", "root", "", "habibgasagency");
