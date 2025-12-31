@@ -6,8 +6,8 @@
         header("LOCATION:../index.php");
     }
 
-
-    $selectUser = mysqli_query($connect, "SELECT * FROM login_user WHERE id = '1'");
+    $user = $_SESSION["user"];
+    $selectUser = mysqli_query($connect, "SELECT * FROM login_user WHERE email = '$user'");
     $fetch_selectUser = mysqli_fetch_assoc($selectUser);
 
     $userNotUpdated = '';

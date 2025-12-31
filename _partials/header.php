@@ -220,12 +220,31 @@ $fet = mysqli_fetch_assoc($get);
                         </li>
 
                         <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-users"></i> <span> Accounts </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="account_add.php">Add Account</a></li>
+                                <li><a href="account_list.php">Account List</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-undo"></i> <span> Recovery</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
                                 <li><a href="customer_pay.php">Add Payment Details</a></li>
                                 <li><a href="customer_pay_list.php">Payment List</a></li>
                             </ul>
                         </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-list"></i> <span> Category</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="category_list.php">Category List</a></li>
+                            </ul>
+                        </li>
+
+
+
+                        
 
 
                         <!-- <li class="has_sub">
