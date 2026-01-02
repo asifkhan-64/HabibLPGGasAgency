@@ -8,9 +8,11 @@ if (empty($_SESSION["user"])) {
 
 $notAdded = '';
 
+$id = $_GET['id'];
+$getProduct = mysqli_query($connect, "SELECT * FROM qty_stock_purchase WHERE id = '$id'");
+$fetchGetProducts = mysqli_fetch_assoc($getProduct);
 
-if (isset($_POST['addStock'])) {
-
+if (isset($_POST['updateStock'])) {
     $v_id = $_POST['v_id'];
     $c_id = $_POST['c_id'];
     $product_qty = $_POST['product_qty'];
@@ -19,35 +21,60 @@ if (isset($_POST['addStock'])) {
     $retail_price = $_POST['retail_price'];
     $purchase_date = $_POST['purchase_date'];
 
-    $queryAddStock = mysqli_query(
-        $connect,
-        "INSERT INTO `qty_stock_purchase`(
-                `v_id`,
-                 `c_id`,
-                  `product_qty`,
-                   `purchase_date`,
-                    `cost_price`,
-                     `retail_price`,
-                      `total_purchase_amount`
-                ) VALUES (
-                    '$v_id',
-                     '$c_id',
-                      '$product_qty',
-                       '$purchase_date',
-                        '$cost_price',
-                         '$retail_price',
-                          '$total_purchase_amount'
-            )
-           "
-    );
 
-    if (!$queryAddStock) {
+    $getOldData = mysqli_query($connect, "SELECT * FROM qty_stock_purchase WHERE id = '$id'");
+    $fetchOldData = mysqli_fetch_assoc($getOldData);
+
+    
+
+    if ($fetchOldData['product_qty'] < $product_qty) {
+        $oldQty = $fetchOldData['product_qty'];
+        $differenceQty = $product_qty - $oldQty;
+
+
+        $updateQuery = mysqli_query(
+            $connect,
+            "UPDATE qty_stock_purchase SET 
+                v_id = '$v_id',
+                c_id = '$c_id',
+                product_qty = product_qty + '$differenceQty',
+                total_purchase_amount = '$total_purchase_amount',
+                cost_price = '$cost_price',
+                retail_price = '$retail_price',
+                purchase_date = '$purchase_date'
+             WHERE id = '$id'"
+        );
+
+        $updateCategoryTbl = mysqli_query($connect, "UPDATE categories SET stock_available = stock_available + '$differenceQty' WHERE id = '$c_id'");
+        
+    }else {
+        $oldQty = $fetchOldData['product_qty'];
+        $differenceQty =  $oldQty - $product_qty;
+
+        $updateQuery = mysqli_query(
+            $connect,
+            "UPDATE qty_stock_purchase SET 
+                v_id = '$v_id',
+                c_id = '$c_id',
+                product_qty = product_qty - '$differenceQty',
+                total_purchase_amount = '$total_purchase_amount',
+                cost_price = '$cost_price',
+                retail_price = '$retail_price',
+                purchase_date = '$purchase_date'
+             WHERE id = '$id'"
+        );
+
+        $updateCategoryTbl = mysqli_query($connect, "UPDATE categories SET stock_available = stock_available - '$differenceQty' WHERE id = '$c_id'");
+    }
+
+   
+
+    if (!$updateQuery) {
         $notAdded = '
             <div class="alert alert-danger text-center">
                 Stock Not added!
             </div>';
     } else {
-        $updateCategoryTbl = mysqli_query($connect, "UPDATE categories SET stock_available = stock_available + '$product_qty' WHERE id = '$c_id'");
         header("LOCATION: qty_stock_list.php");
     }
 }
@@ -61,7 +88,7 @@ include('../_partials/header.php')
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <h5 class="page-title">Add Stock (Quantity Based)</h5>
+                <h5 class="page-title">Edit Stock (Quantity Based)</h5>
             </div>
         </div>
 
@@ -80,7 +107,11 @@ include('../_partials/header.php')
 
                                     echo '<select class="form-control comp" name="v_id" required>';
                                     while ($row = mysqli_fetch_assoc($getVendors)) {
-                                        echo '<option value="' . $row['v_id'] . '">' . $row['vendor_name'] . ' - 0' . $row['vendor_contact'] . '</option>';
+                                        if ($fetchGetProducts['v_id'] === $row['v_id']) {
+                                            echo '<option value="' . $row['v_id'] . '" selected>' . $row['vendor_name'] . ' - 0' . $row['vendor_contact'] . '</option>';
+                                        } else {
+                                            echo '<option value="' . $row['v_id'] . '">' . $row['vendor_name'] . ' - 0' . $row['vendor_contact'] . '</option>';
+                                        }
                                     }
 
                                     echo '</select>';
@@ -98,7 +129,11 @@ include('../_partials/header.php')
 
                                     echo '<select class="form-control comp" name="c_id" required>';
                                     while ($row = mysqli_fetch_assoc($getCats)) {
-                                        echo '<option value="' . $row['id'] . '">' . $row['category_name'] . '</option>';
+                                        if ($row['id'] === $fetchGetProducts['c_id']) {
+                                            echo '<option value="' . $row['id'] . '" selected>' . $row['category_name'] . '</option>';
+                                        } else {
+                                            echo '<option value="' . $row['id'] . '">' . $row['category_name'] . '</option>';
+                                        }
                                     }
                                     echo '</select>';
                                     ?>
@@ -106,33 +141,33 @@ include('../_partials/header.php')
 
                                 <label class="col-sm-2 col-form-label">Quantity</label>
                                 <div class="col-sm-4">
-                                    <input type="number" class="form-control" id="total_quantity" name="product_qty" placeholder="Product Qty" required="">
+                                    <input type="number" class="form-control" value="<?php echo $fetchGetProducts['product_qty']; ?>" id="total_quantity" name="product_qty" placeholder="Product Qty" required="">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Total Amount</label>
                                 <div class="col-sm-4">
-                                    <input type="number" class="form-control" name="total_purchase_amount" value="0" id="total_purchase_amount" placeholder="Total Purchase Amount" required="">
+                                    <input type="number" class="form-control" name="total_purchase_amount" value="<?php echo $fetchGetProducts['total_purchase_amount']; ?>" id="total_purchase_amount" placeholder="Total Purchase Amount" required="">
                                 </div>
                                 
 
                                 <label class="col-sm-2 col-form-label">Cost Price</label>
                                 <div class="col-sm-4">
-                                    <input type="number" class="form-control" name="cost_price" id="unit_cost_price" readonly placeholder="Cost Price" required="">
+                                    <input type="number" class="form-control" name="cost_price" value="<?php echo $fetchGetProducts['cost_price']; ?>" id="unit_cost_price" readonly placeholder="Cost Price" required="">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Retail Price</label>
                                 <div class="col-sm-4">
-                                    <input type="number" class="form-control" name="retail_price" placeholder="Retail Price" required="">
+                                    <input type="number" class="form-control" name="retail_price" value="<?php echo $fetchGetProducts['retail_price']; ?>" placeholder="Retail Price" required="">
                                 </div>
 
                                 
                                 <label class="col-sm-2 col-form-label">Purchase Date</label>
                                 <div class="col-sm-4">
-                                    <input type="date" class="form-control" name="purchase_date" placeholder="Purchase Date" required="">
+                                    <input type="date" class="form-control" name="purchase_date" value="<?php echo $fetchGetProducts['purchase_date']; ?>" placeholder="Purchase Date" required="">
                                 </div>
                             </div>
 
@@ -142,7 +177,7 @@ include('../_partials/header.php')
                             <div class="form-group row">
                                 <div class="col-sm-10">
                                     <?php include('../_partials/cancel.php') ?>
-                                    <button type="submit" name="addStock" class="btn btn-primary waves-effect waves-light">Add Stock</button>
+                                    <button type="submit" name="updateStock" class="btn btn-primary waves-effect waves-light">Update Stock</button>
                                 </div>
                             </div>
 
