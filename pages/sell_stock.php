@@ -29,7 +29,7 @@ include('../_partials/header.php');
                             </div>
                             <div class="col-sm-6 text-left">
                                 <!-- <a href="cash_sell.php" class="btn btn-primary waves-effect waves-light btn-lg p-5" style="font-size: 24px">Cash Sell</a> -->
-                                <a href="installement_sell.php?c_id=<?php echo $c_id ?>" class="btn btn-secondary waves-effect waves-light btn-lg p-5 my-5" style="font-size: 24px">Quantity Sell</a>
+                                <a href="qty_sell.php?c_id=<?php echo $c_id ?>" class="btn btn-secondary waves-effect waves-light btn-lg p-5 my-5" style="font-size: 24px">Quantity Sell</a>
                             </div>
                         </div>
                     </div>

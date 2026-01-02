@@ -64,7 +64,7 @@ if (isset($_POST['updateStock'])) {
              WHERE id = '$id'"
         );
 
-        $updateCategoryTbl = mysqli_query($connect, "UPDATE categories SET stock_available = stock_available - '$differenceQty' WHERE id = '$c_id'");
+        $updateCategoryTbl = mysqli_query($connect, "UPDATE categories SET stock_available = stock_available - '$differenceQty', sell_price = '$retail_price' WHERE id = '$c_id'");
     }
 
    

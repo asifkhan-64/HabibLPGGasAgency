@@ -47,7 +47,7 @@ if (isset($_POST['addStock'])) {
                 Stock Not added!
             </div>';
     } else {
-        $updateCategoryTbl = mysqli_query($connect, "UPDATE categories SET stock_available = stock_available + '$product_qty' WHERE id = '$c_id'");
+        $updateCategoryTbl = mysqli_query($connect, "UPDATE categories SET stock_available = stock_available + '$product_qty', sell_price = '$retail_price' WHERE id = '$c_id'");
         header("LOCATION: weight_stock_list.php");
     }
 }
