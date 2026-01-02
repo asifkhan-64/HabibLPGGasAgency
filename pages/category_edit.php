@@ -17,7 +17,7 @@ $categoryName = $fetch_retData['category_name'];
 if (isset($_POST['addCategory'])) {
     $id = $_POST['id'];
     $categoryName = $_POST['categoryName'];
-    $categoryQty = $_POST['categoryQty'];
+    $categoryType = $_POST['categoryType'];
 
 
     // $countQuery = mysqli_query($connect, "SELECT COUNT(*)AS countedCategories FROM categories WHERE category_name = '$categoryName'");
@@ -25,7 +25,7 @@ if (isset($_POST['addCategory'])) {
 
 
     // if ($fetch_countQuery['countedCategories'] == 0) {
-        $updateQuery = mysqli_query($connect, "UPDATE categories SET category_name = '$categoryName', category_qty = '$categoryQty' WHERE id = '$id'");
+        $updateQuery = mysqli_query($connect, "UPDATE categories SET category_name = '$categoryName', category_type = '$categoryType' WHERE id = '$id'");
         if (!$updateQuery) {
             $error = 'Not Updated! Try again!';
         } else {
@@ -63,9 +63,19 @@ include('../_partials/header.php');
                                     <input class="form-control" value="<?php echo $categoryName ?>" placeholder="Category Name" type="text" value="" id="example-text-input" name="categoryName" required="">
                                 </div>
 
-                                <label for="example-text-input" class="col-sm-2 col-form-label">Box Qty</label>
+                                <label class="col-sm-2 col-form-label">Type</label>
                                 <div class="col-sm-4">
-                                    <input class="form-control" placeholder="Box Quantity" type="number" value="<?php echo $fetch_retData['category_qty'] ?>" id="example-text-input" name="categoryQty" required="">
+                                    <select class="form-control designation" name="categoryType" required="" style="width:100%">
+                                        <?php
+                                        if ($fetch_retData['category_type'] == "Weight") {
+                                            echo '<option value="Weight" selected>Weight</option>';
+                                            echo '<option value="Qty">Qty</option>';
+                                        } else {
+                                            echo '<option value="Weight">Weight</option>';
+                                            echo '<option value="Qty" selected>Qty</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -106,6 +116,26 @@ include('../_partials/header.php');
 <?php include('../_partials/responsive.php') ?>
 <!-- Sweet-Alert  -->
 <?php include('../_partials/sweetalert.php') ?>
+<script type="text/javascript" src="../assets/js/select2.min.js"></script>
+<script type="text/javascript">
+$('.designation').select2({
+    placeholder: 'Select an option',
+    allowClear: true
+
+});
+
+$('.attendant').select2({
+    placeholder: 'Select an option',
+    allowClear: true
+
+});
+
+$('.payment').select2({
+        placeholder: 'Select an option',
+        allowClear: true
+
+    });
+</script>
 </body>
 
 </html>

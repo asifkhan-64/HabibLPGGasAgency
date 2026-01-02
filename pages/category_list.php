@@ -11,14 +11,14 @@ $error = '';
 
 if (isset($_POST['addCategory'])) {
     $categoryName = $_POST['categoryName'];
-    $categoryQty = $_POST['categoryQty'];
+    $categoryType = $_POST['categoryType'];
 
     $countQuery = mysqli_query($connect, "SELECT COUNT(*)AS countedCategories FROM categories WHERE category_name = '$categoryName'");
     $fetch_countQuery = mysqli_fetch_assoc($countQuery);
 
 
     if ($fetch_countQuery['countedCategories'] == 0) {
-        $insertQuery = mysqli_query($connect, "INSERT INTO categories(category_name, category_qty)VALUES('$categoryName', '$categoryQty')");
+        $insertQuery = mysqli_query($connect, "INSERT INTO categories(category_name, category_type)VALUES('$categoryName', '$categoryType')");
         if (!$insertQuery) {
             $error = 'Not Added! Try again!';
         } else {
@@ -58,12 +58,18 @@ include('../_partials/header.php');
                                 </div>
 
 
-                                <label for="example-text-input" class="col-sm-2 col-form-label">Box Qty</label>
+                                <label class="col-sm-2 col-form-label">Type</label>
                                 <div class="col-sm-4">
-                                    <input class="form-control" placeholder="Box Quantity" type="number" value="" id="example-text-input" name="categoryQty" required="">
+                                    <select class="form-control designation" name="categoryType" required="" style="width:100%">
+                                        <option value="" disabled selected>Select Type</option>
+                                        <option value="Weight">Weight</option>
+                                        <option value="Qty">Qty</option>
+                                    </select>
                                 </div>
                             </div>
+
                             <hr>
+
                             <div class="form-group row">
                                 <!-- <label for="example-password-input" class="col-sm-2 col-form-label"></label> -->
                                 <div class="col-sm-12" align="right">
@@ -88,7 +94,7 @@ include('../_partials/header.php');
                                 <tr>
                                     <th>#</th>
                                     <th>Category Name</th>
-                                    <th>Box Quantity</th>
+                                    <th>Category Type</th>
                                     <th class="text-center"> <i class="fa fa-edit"></i>
                                     </th>
                                 </tr>
@@ -103,7 +109,7 @@ include('../_partials/header.php');
                                     <tr>
                                         <td>' . $iteration++ . '</td>
                                         <td>' . $rowCats['category_name'] . '</td>
-                                        <td>' . $rowCats['category_qty'] . '</td>
+                                        <td>' . $rowCats['category_type'] . '</td>
                                         <td class="text-center"><a href="category_edit.php?id=' . $rowCats['id'] . '" type="button" class="btn text-white btn-warning waves-effect waves-light">Edit</a></td>
                                     </tr>
                                     ';
@@ -137,6 +143,26 @@ include('../_partials/header.php');
 <?php include('../_partials/responsive.php') ?>
 <!-- Sweet-Alert  -->
 <?php include('../_partials/sweetalert.php') ?>
+<script type="text/javascript" src="../assets/js/select2.min.js"></script>
+<script type="text/javascript">
+$('.designation').select2({
+    placeholder: 'Select an option',
+    allowClear: true
+
+});
+
+$('.attendant').select2({
+    placeholder: 'Select an option',
+    allowClear: true
+
+});
+
+$('.payment').select2({
+        placeholder: 'Select an option',
+        allowClear: true
+
+    });
+</script>
 </body>
 
 </html>

@@ -242,6 +242,22 @@ $fet = mysqli_fetch_assoc($get);
                             </ul>
                         </li>
 
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-cart "></i> <span> Purchase</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="purchase_stock.php">Purchase Stock</a></li>
+                                <li><a href="weight_stock_list.php">Weight Stock List</a></li>
+                                <li><a href="qty_stock_list.php">Quantity Stock List</a></li>
+                            </ul>
+                        </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-cart "></i> <span> Sell</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="sell_stock_customer.php">Sell Stock</a></li>
+                                <li><a href="sell_list.php">Sell List</a></li>
+                            </ul>
+                        </li>
+
 
 
                         
