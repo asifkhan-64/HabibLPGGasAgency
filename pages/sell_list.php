@@ -5,9 +5,6 @@ if (empty($_SESSION["user"])) {
     header("LOCATION:../index.php");
 }
 
-$c_id = $_GET['c_id'];
-
-
 include('../_partials/header.php');
 ?>
 
@@ -15,7 +12,7 @@ include('../_partials/header.php');
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <h5 class="page-title">Sell Stock</h5>
+                <h5 class="page-title">Sell List</h5>
             </div>
         </div>
         <!-- end row -->
@@ -25,12 +22,10 @@ include('../_partials/header.php');
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-sm-6 text-right">
-                                <a href="weight_sell.php?c_id=<?php echo $c_id ?>" class="btn btn-primary waves-effect waves-light btn-lg p-5 my-5" style="font-size: 24px">Weight Sell</a>
+                                <a href="sell_list_weight.php" class="btn btn-primary waves-effect waves-light btn-lg p-5 m-5" style="font-size: 24px">Sell List Weight</a>
                             </div>
-                            
                             <div class="col-sm-6 text-left">
-                                <!-- <a href="cash_sell.php" class="btn btn-primary waves-effect waves-light btn-lg p-5" style="font-size: 24px">Cash Sell</a> -->
-                                <a href="qty_sell.php?c_id=<?php echo $c_id ?>" class="btn btn-secondary waves-effect waves-light btn-lg p-5 my-5" style="font-size: 24px">Quantity Sell</a>
+                                <a href="sell_list_qty.php" class="btn btn-secondary waves-effect waves-light btn-lg p-5 m-5" style="font-size: 24px">Sell List Quantity</a>
                             </div>
                         </div>
                     </div>

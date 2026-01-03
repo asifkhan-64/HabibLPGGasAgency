@@ -11,11 +11,8 @@ $no_models = '';
 
 $v_id = $_POST["vendor"];
 
-$query = mysqli_query($connect, "SELECT bill_no, remaining_amount FROM `vendor_summary` WHERE v_id = '$v_id'");
-$output = '<option></option>';
-while ($row = mysqli_fetch_array($query)) {
-    if ($row['remaining_amount'] > 0) {
-        $output .= '<option value=' . $row['bill_no'] . '>' . $row['bill_no'] . '</option>';
-    }
-}
-echo $output;
+$query = mysqli_query($connect, "SELECT total_dues FROM `vendor_tbl` WHERE v_id = '$v_id'");
+$row = mysqli_fetch_array($query);
+
+echo $done = $row['total_dues'];
+

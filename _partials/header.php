@@ -208,6 +208,8 @@ $fet = mysqli_fetch_assoc($get);
                             <ul class="list-unstyled">
                                 <li><a href="vendor_add.php">Add Vendor</a></li>
                                 <li><a href="vendors_list.php">Vendor List</a></li>
+                                <!-- <li><a href="pay_vendor.php">Pay Vendor</a></li> -->
+                                <!-- <li><a href="pay_vendors_list.php">Pay Vendor List</a></li> -->
                             </ul>
                         </li>
 
@@ -232,6 +234,7 @@ $fet = mysqli_fetch_assoc($get);
                             <ul class="list-unstyled">
                                 <li><a href="customer_pay.php">Add Payment Details</a></li>
                                 <li><a href="customer_pay_list.php">Payment List</a></li>
+                                <li><a href="customer_cylinders.php">Cylinder Return</a></li>
                             </ul>
                         </li>
 
@@ -254,7 +257,7 @@ $fet = mysqli_fetch_assoc($get);
                             <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-cart "></i> <span> Sell</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
                                 <li><a href="sell_stock_customer.php">Sell Stock</a></li>
-                                <li><a href="sell_list.php">Sell List</a></li>
+                                <li><a href="sell_list.php">Sell List Qty</a></li>
                             </ul>
                         </li>
 

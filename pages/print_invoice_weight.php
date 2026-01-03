@@ -8,10 +8,10 @@ if (empty($_SESSION["user"])) {
 $id = $_GET['id'];
 $invoiceNo = $_GET['invoiceNo'];
 
-$getInvoiceItems = mysqli_query($connect, "SELECT customer_qty_invoice.*, customer_qty_invoice.prod_qty AS qty, qty_stock_purchase.*, categories.category_name, categories.stock_available FROM `customer_qty_invoice`
-INNER JOIN qty_stock_purchase ON qty_stock_purchase.c_id = customer_qty_invoice.prod_id
-INNER JOIN categories ON categories.id = qty_stock_purchase.c_id
-WHERE customer_qty_invoice.cus_id = '$id'  AND customer_qty_invoice.invoice_no = '$invoiceNo'");
+$getInvoiceItems = mysqli_query($connect, "SELECT customer_weight_invoice.*, customer_weight_invoice.prod_qty AS qty, weight_stock_purchase.*, categories.category_name, categories.stock_available FROM `customer_weight_invoice`
+INNER JOIN weight_stock_purchase ON weight_stock_purchase.c_id = customer_weight_invoice.prod_id
+INNER JOIN categories ON categories.id = weight_stock_purchase.c_id
+WHERE customer_weight_invoice.cus_id = '$id'  AND customer_weight_invoice.invoice_no = '$invoiceNo'");
 
 $fetch_getInvoiceItems = mysqli_fetch_assoc($getInvoiceItems);
 
@@ -20,7 +20,7 @@ $fetch_getCustomerDetails = mysqli_fetch_assoc($getCustomerDetails);
 
 // $get
 
-$getTotals = mysqli_query($connect, "SELECT * FROM `customer_summary_qty` WHERE c_id = '$id' AND invoice_id = '$invoiceNo'");
+$getTotals = mysqli_query($connect, "SELECT * FROM `customer_summary_weight` WHERE c_id = '$id' AND invoice_id = '$invoiceNo'");
 $fetch_getTotals = mysqli_fetch_assoc($getTotals);
 
 
@@ -58,7 +58,7 @@ include '../_partials/header.php';
     <div class="container-fluid"><br>
         <div class="row">
             <div class="col-sm-12">
-                <h5 class="page-title d-inline" style="font-size: 14px !important">Invoice Print (Quantity Based)</h5>
+                <h5 class="page-title d-inline" style="font-size: 14px !important">Invoice Print (Weight Based)</h5>
                 <a href="<?php echo 'print_invoice_cash_confirm.php?id='.$id.'&invoiceNo='.$invoiceNo.''?>" rel="noopener" target="_blank" class="btn btn-success float-right btn-lg mb-3"><i class="fas fa-print"></i> Print</a>
                 
                 <!-- <button onclick="window.print();" class="noPrint"> -->
@@ -134,10 +134,10 @@ include '../_partials/header.php';
                             <tbody>
                                 <?php
 
-                                $getInvoiceItemsLoop = mysqli_query($connect, "SELECT customer_qty_invoice.*, customer_qty_invoice.prod_qty AS qty, qty_stock_purchase.*, categories.category_name, categories.stock_available FROM `customer_qty_invoice`
-                                INNER JOIN qty_stock_purchase ON qty_stock_purchase.c_id = customer_qty_invoice.prod_id
-                                INNER JOIN categories ON categories.id = qty_stock_purchase.c_id
-                                WHERE customer_qty_invoice.cus_id = '$id'  AND customer_qty_invoice.invoice_no = '$invoiceNo'");
+                                $getInvoiceItemsLoop = mysqli_query($connect, "SELECT customer_weight_invoice.*, customer_weight_invoice.prod_qty AS qty, weight_stock_purchase.*, categories.category_name, categories.stock_available FROM `customer_weight_invoice`
+                                INNER JOIN weight_stock_purchase ON weight_stock_purchase.c_id = customer_weight_invoice.prod_id
+                                INNER JOIN categories ON categories.id = weight_stock_purchase.c_id
+                                WHERE customer_weight_invoice.cus_id = '$id'  AND customer_weight_invoice.invoice_no = '$invoiceNo'");
                                 
                                 $getTotal = 0;
 

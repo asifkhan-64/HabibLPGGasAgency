@@ -12,21 +12,21 @@ if (isset($_POST['makeInvoice'])) {
     $products_arr = $_POST['platform'];
 
     if (empty($products_arr)) {
-        header("Location: qty_sell.php?c_id=".$c_id."");
+        header("Location: weight_sell.php?c_id=".$c_id."");
     }
 
     for ($i = 0; $i < sizeof($products_arr); $i++) {
         $product = $products_arr[$i];
 
-        $checkingQuery = mysqli_query($connect, "SELECT * FROM cart_tbl_qty WHERE c_id='$c_id' AND product_id = '$product'");
-        $deleteQuery = mysqli_query($connect, "DELETE FROM cart_tbl_qty WHERE c_id='$c_id' AND product_id = '$product'");
+        $checkingQuery = mysqli_query($connect, "SELECT * FROM cart_tbl_weight WHERE c_id='$c_id' AND product_id = '$product'");
+        $deleteQuery = mysqli_query($connect, "DELETE FROM cart_tbl_weight WHERE c_id='$c_id' AND product_id = '$product'");
 
-        $insertCart = mysqli_query($connect, "INSERT INTO cart_tbl_qty(c_id, product_id)VALUES('$c_id', '$product')");
+        $insertCart = mysqli_query($connect, "INSERT INTO cart_tbl_weight(c_id, product_id)VALUES('$c_id', '$product')");
 
     }
 
     if ($insertCart) {
-        header("LOCATION:amount_cash_qty.php?c_id=" . $c_id . "");
+        header("LOCATION:amount_cash_weight.php?c_id=" . $c_id . "");
     }
 }
 
@@ -151,7 +151,7 @@ include('../_partials/header.php');
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <h5 class="page-title">Quantity Based Sell</h5>
+                <h5 class="page-title">Weight Based Sell</h5>
             </div>
         </div>
 
@@ -174,7 +174,7 @@ include('../_partials/header.php');
                             <input type="hidden" name="c_id" value="<?php echo $c_id ?>">
                             <?php
 
-                            $getStock = mysqli_query($connect, "SELECT * FROM `categories` WHERE category_type = 'Qty' AND stock_available > 0");
+                            $getStock = mysqli_query($connect, "SELECT * FROM `categories` WHERE category_type = 'Weight' AND stock_available > 0");
 
                             while ($rowStock = mysqli_fetch_assoc($getStock)) {
                                 echo '
@@ -253,7 +253,7 @@ include('../_partials/header.php');
             }
 
             $.ajax({
-                url: "get_qty_products.php",
+                url: "get_weight_products.php",
                 method: "POST",
                 data: {
                     searchTags: searchTags
