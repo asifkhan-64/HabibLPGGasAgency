@@ -119,7 +119,7 @@ include('../_partials/header.php');
                         <form method="POST">
                             <div class="row text-right">
                                 <div class="col-12 mb-4">
-                                    <button type="submit" style="width: 30%" name="generatePdf" class="btn btn-primary waves-effect waves-light btn-lg">Generate PDF</button>
+                                    <button type="submit" style="width: 30%" id="btnInvoice" name="generatePdf" class="btn btn-primary waves-effect waves-light btn-lg">Generate PDF</button>
                                 </div>
                             </div>
                             <table class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -129,8 +129,6 @@ include('../_partials/header.php');
                                         <th>Product</th>
                                         <th>Price</th>
                                         <th>Qty</th>
-                                        <th>Discount</th>
-                                        <th>Tax</th>
                                         <th>Total</th>
                                     </tr>
                                 </thead>
@@ -167,8 +165,7 @@ include('../_partials/header.php');
                                         <td>' . $iteration++ . '</td>
                                             <td><b>' . $rowCartItems['category_name'] . '</b></td>
                                             <td><b>Rs. ' . $rowCartItems['price'] . '</b></td>
-                                            <td><b>Qty: ' . number_format($rowCartItems['qty']) . '</b>
-                                            <td><b>' . $rowCartItems['discount'] . '%</b>
+                                            <td><b>Qty: ' . $rowCartItems['qty'] . '</b>
                                             ';
 
                                         // $total = $rowCartItems['qty'] * $priceAfterDiscount;
@@ -187,7 +184,6 @@ include('../_partials/header.php');
                                         $netPercentage = $total - $findingPercentageFinal;
                                         $netPrice = $netPrice + $netPercentage;
                                         echo '
-                                            <td><b>' . $rowCartItems['tax'].' * ' .$rowCartItems['qty']. ' = ' .number_format($tax) . '</b></td>
                                             <td><b>Rs. ' . $netPercentage . '</b></td>';
 
                                             $getDiscount = ($rowCartItems['price'] * $rowCartItems['qty']) - $netPercentage ;
@@ -203,8 +199,6 @@ include('../_partials/header.php');
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
-                                        <td></td>
                                         <td class="text-right"><b>Total Amount:</b></td>
                                         <td><input type="number" name="totalAmount" readonly value="' . $netPrice . '" onkeyup="sum()" class="form-control pull-right" id="totalAmount" required=""></td>
                                     </tr>
@@ -213,25 +207,19 @@ include('../_partials/header.php');
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
-                                        <td></td>
                                         <td class="text-right"><b>Discount:</b></td>
-                                        <td><input type="number" name="discountAmount" readonly value="' . $getDiscountData . '" onkeyup="sum()" step=".01" class="form-control pull-right" id="totalAmount" required=""></td>
+                                        <td><input type="number" name="discountAmount" value="0" onkeyup="sum()" step=".01" class="form-control pull-right" id="discountAmount" required=""></td>
                                     </tr>
 
                                     <tr>
-                                        <td></td>
-                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td class="text-right"><b>Paid Amount:</b></td>
-                                        <td><input type="number" name="paidAmount" onkeyup="sum()" class="form-control pull-right" value="0"  step=".01" id="paidAmount" required=""></td>
+                                        <td><input type="number" name="paidAmount" onkeyup="sum()" value="0" class="form-control pull-right" step=".01" id="paidAmount" required=""></td>
                                     </tr>
 
                                     <tr>
-                                        <td></td>
-                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -271,20 +259,37 @@ include('../_partials/header.php');
 <?php include('../_partials/sweetalert.php') ?>
 
 <script>
-    var paidAmount = $('#paidAmount').val('0');
-    var remainingAmount = $('#remainingAmount').val('0');
+    $(document).ready(function() {
+        // Run calculation immediately on page load
+        calculateRemaining();
 
-    function sum() {
-        var totalAmount = $('#totalAmount').val();
-        var paidAmount = $('#paidAmount').val();
-        var remainingAmount = $('#remainingAmount').val();
+        // Listen for changes in any relevant field
+        $('#discountAmount, #paidAmount, #totalAmount').on('input', function() {
+            calculateRemaining();
+        });
 
-        var finalPrice = parseFloat(totalAmount) - parseFloat(paidAmount);
-        console.log(finalPrice)
-        if (!isNaN(finalPrice)) {
-            document.getElementById('remainingAmount').value = finalPrice
+        function calculateRemaining() {
+            var total = parseFloat($('#totalAmount').val()) || 0;
+            var discount = parseFloat($('#discountAmount').val()) || 0;
+            var paid = parseFloat($('#paidAmount').val()) || 0;
+
+            var remaining = total - discount - paid;
+
+            // Update the display field
+            $('#remainingAmount').val(remaining);
+
+            // Logic: Disable button if Remaining Amount is negative
+            if (remaining < 0) {
+                $('#btnInvoice').prop('disabled', true);
+                $('#btnInvoice').css('opacity', '0.5'); // Visual cue that it's disabled
+                $('#remainingAmount').css('color', 'red'); // Optional: turn text red
+            } else {
+                $('#btnInvoice').prop('disabled', false);
+                $('#btnInvoice').css('opacity', '1');
+                $('#remainingAmount').css('color', 'black');
+            }
         }
-    }
+    });
 </script>
 
 </body>

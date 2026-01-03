@@ -33,7 +33,8 @@ if (isset($_POST['makeInvoice'])) {
     }
 
     if ($updateQuery) {
-        header("LOCATION: discount_page_cash_qty.php?c_id=" . $c_id . "");
+        // header("LOCATION: discount_page_cash_qty.php?c_id=" . $c_id . "");
+        header("LOCATION: total_cash_qty.php?c_id=" . $c_id . "");
     }
 }
 
@@ -115,8 +116,7 @@ include('../_partials/header.php');
                                             <td style="width: 10%"></td>
 
                                             <td style="width: 25%">
-
-                                                <input style="width: 100%; border: none; border-bottom: 2px solid green" type="number" placeholder="Available in Stock: ' . $rowCartItems['product_qty'] . '"  class="form-control"  max="' . $rowCartItems['product_qty'] . '" min="1" id="product_qty" name="product_qty[]" onkeyup="if(this.value > ' . $rowCartItems['product_qty'] . ') this.value = null;" required>
+                                                <input style="width: 100%; border: none; border-bottom: 2px solid green" type="number" placeholder="Available in Stock: ' . $rowCartItems['stock_available'] . '"  class="form-control"  max="' . $rowCartItems['product_qty'] . '" min="1" id="product_qty" name="product_qty[]" onkeyup="if(this.value > ' . $rowCartItems['product_qty'] . ') this.value = null;" required>
                                             </td>
 
                                             <td style="width: 10%" class="text-center">
