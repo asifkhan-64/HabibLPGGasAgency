@@ -170,6 +170,57 @@ $fet = mysqli_fetch_assoc($get);
                         </li>
 
                         <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-industry"></i> <span> Vendors</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="vendor_add.php">Add Vendor</a></li>
+                                <li><a href="vendors_list.php">Vendor List</a></li>
+                                <!-- <li><a href="pay_vendor.php">Pay Vendor</a></li> -->
+                                <!-- <li><a href="pay_vendors_list.php">Pay Vendor List</a></li> -->
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-users"></i> <span> Customers </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="customer_add.php">Add Customer</a></li>
+                                <li><a href="customers_list.php">Customer List</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-list"></i> <span> Category</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="category_list.php">Category List</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-cart "></i> <span> Purchase</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="purchase_stock.php">Purchase Stock</a></li>
+                                <li><a href="qty_stock_list.php">Quantity Stock List</a></li>
+                                <li><a href="weight_stock_list.php">Weight Stock List</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-cart "></i> <span> Sell</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="sell_stock_customer.php">Sell Stock</a></li>
+                                <li><a href="sell_list.php">Sell List</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-undo"></i> <span> Recovery</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="customer_pay.php">Add Payment Details</a></li>
+                                <li><a href="customer_pay_list.php">Payment List</a></li>
+                                <li><a href="customer_cylinders.php">Cylinder Return</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-synagogue"></i> <span> Company Details </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
                                 <li><a href="shop_info.php">Company Info</a></li>
@@ -191,6 +242,14 @@ $fet = mysqli_fetch_assoc($get);
                         </li>
 
                         <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-users"></i> <span> Accounts </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="account_add.php">Add Account</a></li>
+                                <li><a href="account_list.php">Account List</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-broadcast"></i>
                                 <span> Expenses</span> <span class="menu-arrow float-right"><i
                                         class="mdi mdi-chevron-right"></i></span></a>
@@ -203,63 +262,15 @@ $fet = mysqli_fetch_assoc($get);
                             </ul>
                         </li>
 
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-industry"></i> <span> Vendors</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="vendor_add.php">Add Vendor</a></li>
-                                <li><a href="vendors_list.php">Vendor List</a></li>
-                                <!-- <li><a href="pay_vendor.php">Pay Vendor</a></li> -->
-                                <!-- <li><a href="pay_vendors_list.php">Pay Vendor List</a></li> -->
-                            </ul>
-                        </li>
+                        
 
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-users"></i> <span> Customers </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="customer_add.php">Add Customer</a></li>
-                                <li><a href="customers_list.php">Customer List</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-users"></i> <span> Accounts </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="account_add.php">Add Account</a></li>
-                                <li><a href="account_list.php">Account List</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-undo"></i> <span> Recovery</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="customer_pay.php">Add Payment Details</a></li>
-                                <li><a href="customer_pay_list.php">Payment List</a></li>
-                                <li><a href="customer_cylinders.php">Cylinder Return</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-list"></i> <span> Category</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="category_list.php">Category List</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-cart "></i> <span> Purchase</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="purchase_stock.php">Purchase Stock</a></li>
-                                <li><a href="qty_stock_list.php">Quantity Stock List</a></li>
-                                <li><a href="weight_stock_list.php">Weight Stock List</a></li>
-                            </ul>
-                        </li>
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-cart "></i> <span> Sell</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <!-- <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-cart "></i> <span> Reports</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
                                 <li><a href="sell_stock_customer.php">Sell Stock</a></li>
-                                <li><a href="sell_list.php">Sell List Qty</a></li>
+                                <li><a href="sell_list.php">Sell List</a></li>
                             </ul>
-                        </li>
+                        </li> -->
 
 
 

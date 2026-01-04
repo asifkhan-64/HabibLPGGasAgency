@@ -34,6 +34,7 @@ include('../_partials/header.php');
                                     <th>Paid</th>
                                     <th>Total</th>
                                     <th class="text-center"> <i class="fa fa-edit"></i></th>
+                                    <th class="text-center"> Whatsapp</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,7 +55,52 @@ include('../_partials/header.php');
                                         <td>Rs. ' . $rowCustomers['total_paid'] . '</td>
                                         <td>Rs. ' . $rowCustomers['total_sale'] . '</td>
                                         
-                                        <td class="text-center"><a href="customer_edit.php?id=' . $rowCustomers['c_id'] . '" type="button" class="btn text-white btn-warning waves-effect waves-light">Edit</a></td>
+                                        
+                                        <td class="text-center"><a href="customer_edit.php?id=' . $rowCustomers['c_id'] . '" type="button" class="btn text-white btn-warning waves-effect waves-light">Edit</a></td>';
+                                            
+                                            $getCompanyDEtails = mysqli_query($connect, "SELECT * FROM `shop_info`");
+                                            $rowCompanyDetails = mysqli_fetch_assoc($getCompanyDEtails);
+                                            $phone_number = $rowCustomers['customer_contact']; // Concatenate country code and rest of the number
+
+
+                                            // 2. Construct the payment details message string
+                                            $message = "Hello " . $rowCustomers['customer_name'] . ",%0A%0AYour dues details are as follows:";
+                                            
+                                            // Package Details
+                                            $message .= "%0ATotal Dues: PKR " . number_format($rowCustomers['total_dues']);
+
+                                            // Payment Date
+                                            $message .= "%0ARemaining Cylinders: " . number_format($rowCustomers['remaining_cylinders']);
+
+                                            $message .= "%0A%0AKindly clear your dues and return cylinders as soon as possible!";
+                                           
+                                            // Add Closing Message
+                                            $message .= "%0A%0AThank you for your business!";
+
+                                            // Company Info
+                                            $message .= "%0A%0ARegards,%0A" . $rowCompanyDetails['shop_title']. ", ".$rowCompanyDetails['shop_name'];
+                                            $message .= "%0AAddress: " . $rowCompanyDetails['shop_address'];
+                                            $message .= "%0AContact: 0" . $rowCompanyDetails['shop_contact'];
+                                            
+                                            // NOTE: The message is already URL-encoded enough using %0A for new lines. 
+                                            // You could wrap the whole $message in urlencode() for maximum safety.
+                                            // $encoded_message = urlencode($message);
+
+                                            // 3. Construct the full WhatsApp URL
+                                            $whatsapp_url = "https://wa.me/92{$phone_number}?text={$message}";
+
+                                            echo '
+
+                                            <td>
+                                                <a href="'.$whatsapp_url.'" 
+                                                    class="btn btn-success" 
+                                                    target="_blank" 
+                                                    rel="noopener noreferrer"
+                                                    style="background-color: #25D366; border-color: #25D366;">
+                                                        
+                                                    <i class="fab fa-whatsapp"></i> WhatsApp
+                                                </a>
+                                            </td>
                                     </tr>
                                     ';
                                 }
