@@ -217,6 +217,7 @@ $fet = mysqli_fetch_assoc($get);
                                 <li><a href="customer_pay.php">Add Payment Details</a></li>
                                 <li><a href="customer_pay_list.php">Payment List</a></li>
                                 <li><a href="customer_cylinders.php">Cylinder Return</a></li>
+                                <li><a href="customer_cylinder_list.php">Cylinder Return List</a></li>
                             </ul>
                         </li>
 

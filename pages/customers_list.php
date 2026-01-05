@@ -33,6 +33,7 @@ include('../_partials/header.php');
                                     <th>Dues</th>
                                     <th>Paid</th>
                                     <th>Total</th>
+                                    <th>Cylinders</th>
                                     <th class="text-center"> <i class="fa fa-edit"></i></th>
                                     <th class="text-center"> Whatsapp</th>
                                 </tr>
@@ -54,6 +55,7 @@ include('../_partials/header.php');
                                         <td>Rs. ' . $rowCustomers['total_dues'] . '</td>
                                         <td>Rs. ' . $rowCustomers['total_paid'] . '</td>
                                         <td>Rs. ' . $rowCustomers['total_sale'] . '</td>
+                                        <td class="text-center">' . $rowCustomers['remaining_cylinders'] . '</td>
                                         
                                         
                                         <td class="text-center"><a href="customer_edit.php?id=' . $rowCustomers['c_id'] . '" type="button" class="btn text-white btn-warning waves-effect waves-light">Edit</a></td>';
