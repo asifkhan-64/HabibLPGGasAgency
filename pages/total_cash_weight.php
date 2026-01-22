@@ -65,10 +65,10 @@ if (isset($_POST['generatePdf'])) {
 
         $insertQuery = mysqli_query($connect, "INSERT INTO customer_weight_invoice(`cus_id`, `prod_id`, `prod_qty`, `prod_price`, `discount`, `tax`, `invoice_no`)VALUES('$c_id', '$product_id', '$product_qty', '$price', '$discount', '$taxProduct', '$newInvoice')");
 
-        $getProfitData = mysqli_query($connect, "SELECT * FROM weight_stock_purchase WHERE id = '$product_id'");
-        $fetch_getProfitData = mysqli_fetch_assoc($getProfitData);
-        $purchasePrice = $fetch_getProfitData['purchase_price_self'];
-        $profit = $price - $purchasePrice;
+        // $getProfitData = mysqli_query($connect, "SELECT * FROM weight_stock_purchase WHERE id = '$product_id'");
+        // $fetch_getProfitData = mysqli_fetch_assoc($getProfitData);
+        // $purchasePrice = $fetch_getProfitData['purchase_price_self'];
+        // $profit = $price - $purchasePrice;
 
 
         date_default_timezone_set("Asia/Karachi");
@@ -82,7 +82,7 @@ if (isset($_POST['generatePdf'])) {
 
     $insertSummaryQuery = mysqli_query($connect, "INSERT INTO `customer_summary_weight`(`c_id`, `invoice_id`, `net_amount`, `paid_amount`, `remaining_amount`, `net_discount`) VALUES ('$c_id', '$newInvoice', '$totalAmount', '$paidAmount', '$remainingAmount', '$discountAmount')");
 
-    $updateCustomerData = mysqli_query($connect, "UPDATE customer_add SET total_sale = (total_sale + $totalAmount), total_paid = (total_paid + $paidAmount), total_dues = (total_dues + $remainingAmount), remaining_cylinders = (remaining_cylinders + $remainingCylinder), other_cylinders = (other_cylinders + $remaining_cylinders)  WHERE c_id = '$c_id'");
+    $updateCustomerData = mysqli_query($connect, "UPDATE customer_add SET total_sale = (total_sale + $totalAmount), total_paid = (total_paid + $paidAmount), total_dues = (total_dues + $remainingAmount), remaining_cylinders = (remaining_cylinders + $remainingCylinder), other_cylinders = (other_cylinders + $remainingCylinder)  WHERE c_id = '$c_id'");
 
     if ($updateCustomerData) {
         $invoiceNoMax = mysqli_query($connect, "SELECT MAX(invoice_id) As inId FROM `customer_summary_weight` WHERE c_id = '$c_id'");
