@@ -8,8 +8,8 @@ if (empty($_SESSION["user"])) {
 
 $c_id = $_GET['c_id'];
 
-$getCartItems = mysqli_query($connect, "SELECT cart_tbl_weight.*,cart_tbl_weight.id AS cartID, cart_tbl_weight.product_qty AS qty, weight_stock_purchase.*, categories.category_name FROM `cart_tbl_weight`
-INNER JOIN weight_stock_purchase ON weight_stock_purchase.c_id = cart_tbl_weight.product_id
+$getCartItems = mysqli_query($connect, "SELECT cart_tbl_weight.*,cart_tbl_weight.id AS cartID, weight_stock_purchase.id AS stockId, cart_tbl_weight.product_qty AS qty, weight_stock_purchase.*, categories.category_name FROM `cart_tbl_weight`
+INNER JOIN weight_stock_purchase ON weight_stock_purchase.id = cart_tbl_weight.stock_id
 INNER JOIN categories ON categories.id = weight_stock_purchase.c_id
 WHERE cart_tbl_weight.c_id = '$c_id' AND cart_tbl_weight.sell_status = '0' ORDER BY cart_tbl_weight.product_qty DESC");
 
@@ -76,13 +76,13 @@ if (isset($_POST['generatePdf'])) {
 
         $netProfitAndLoss = $product_qty * $price;
 
-        // $insertProfit = mysqli_query($connect, "INSERT INTO profit_loss(product_id, cash_sell, profit_product, customer_id, custom_date, prod_qty_total, sold_price)VALUES('$product_id', '1', '$netProfitAndLoss', '$c_id', '$customDate', '$product_qty', '$price')");
+        $insertProfit = mysqli_query($connect, "INSERT INTO profit_loss_weight(product_id, customer_id, custom_date, prod_qty_total, sold_price)VALUES('$product_id',  '$c_id', '$customDate', '$product_qty', '$price')");
     }
 
 
     $insertSummaryQuery = mysqli_query($connect, "INSERT INTO `customer_summary_weight`(`c_id`, `invoice_id`, `net_amount`, `paid_amount`, `remaining_amount`, `net_discount`) VALUES ('$c_id', '$newInvoice', '$totalAmount', '$paidAmount', '$remainingAmount', '$discountAmount')");
 
-    $updateCustomerData = mysqli_query($connect, "UPDATE customer_add SET total_sale = (total_sale + $totalAmount), total_paid = (total_paid + $paidAmount), total_dues = (total_dues + $remainingAmount), remaining_cylinders = (remaining_cylinders + $remainingCylinder) WHERE c_id = '$c_id'");
+    $updateCustomerData = mysqli_query($connect, "UPDATE customer_add SET total_sale = (total_sale + $totalAmount), total_paid = (total_paid + $paidAmount), total_dues = (total_dues + $remainingAmount), remaining_cylinders = (remaining_cylinders + $remainingCylinder), other_cylinders = (other_cylinders + $remaining_cylinders)  WHERE c_id = '$c_id'");
 
     if ($updateCustomerData) {
         $invoiceNoMax = mysqli_query($connect, "SELECT MAX(invoice_id) As inId FROM `customer_summary_weight` WHERE c_id = '$c_id'");

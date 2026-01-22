@@ -8,10 +8,10 @@ if (empty($_SESSION["user"])) {
 
 $c_id = $_GET['c_id'];
 
-$getCartItems = mysqli_query($connect, "SELECT cart_tbl_weight.*,cart_tbl_weight.id AS cartID, weight_stock_purchase.*, categories.category_name, categories.stock_available, categories.sell_price FROM `cart_tbl_weight`
+$getCartItems = mysqli_query($connect, "SELECT cart_tbl_weight.*,cart_tbl_weight.id AS cartID, weight_stock_purchase.id AS stockId, weight_stock_purchase.*, categories.category_name, categories.stock_available, categories.sell_price FROM `cart_tbl_weight`
 INNER JOIN weight_stock_purchase ON weight_stock_purchase.c_id = cart_tbl_weight.product_id
 INNER JOIN categories ON categories.id = weight_stock_purchase.c_id
-WHERE cart_tbl_weight.c_id = '$c_id' AND cart_tbl_weight.sell_status = '0'");
+WHERE cart_tbl_weight.c_id = '$c_id' AND cart_tbl_weight.sell_status = '0'  GROUP BY cart_tbl_weight.product_id");
 
 $count = mysqli_num_rows($getCartItems);
 
@@ -21,6 +21,7 @@ if (isset($_POST['makeInvoice'])) {
     $arr_product_qty = $_POST['product_qty'];
     $arr_product_id = $_POST['product_id'];
     $arr_price = $_POST['price'];
+    $arr_stockid = $_POST['stock_id'];
     // $arr_discount = $_POST['discount'];
 
     for ($i = 0; $i < sizeof($arr_cart_id); $i++) {
@@ -28,8 +29,9 @@ if (isset($_POST['makeInvoice'])) {
         $product_qty = $arr_product_qty[$i];
         $product_id = $arr_product_id[$i];
         $price = $arr_price[$i];
-        
-        $updateQuery = mysqli_query($connect, "UPDATE cart_tbl_weight SET product_qty = '$product_qty', price = '$price' WHERE product_id = '$product_id' AND c_id = '$c_id' AND id = '$cart_id'");
+        $stock_id = $arr_stockid[$i];
+
+        $updateQuery = mysqli_query($connect, "UPDATE cart_tbl_weight SET product_qty = '$product_qty', stock_id = '$stock_id', price = '$price' WHERE product_id = '$product_id' AND c_id = '$c_id' AND id = '$cart_id'");
     }
 
     if ($updateQuery) {
@@ -104,6 +106,7 @@ include('../_partials/header.php');
                                         <tr class="rowCustom' . $iteration . '">
                                         <input type="hidden" name="cart_id[]" value="' . $rowCartItems['cartID'] . '" class="form-control" required>
                                         <input type="hidden" name="c_id" value="' . $c_id . '" class="form-control" required>
+                                        <input type="hidden" name="stock_id[]" value="' . $rowCartItems['stockId'] . '" class="form-control" required>
                                         <input type="hidden" name="product_id[]" value="' . $rowCartItems['product_id'] . '" class="form-control" required>
                                             <td style="width: 5%">' . $iteration++ . '</td>
 

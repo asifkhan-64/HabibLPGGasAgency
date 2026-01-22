@@ -13,7 +13,7 @@ include('../_partials/header.php');
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <h5 class="page-title">Sell List (Cash)</h5>
+                <h5 class="page-title">Sell List (Weight Based)</h5>
             </div>
         </div>
         <!-- end row -->

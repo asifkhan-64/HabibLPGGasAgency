@@ -8,8 +8,8 @@ if (empty($_SESSION["user"])) {
 
 $c_id = $_GET['c_id'];
 
-$getCartItems = mysqli_query($connect, "SELECT cart_tbl_qty.*,cart_tbl_qty.id AS cartID, cart_tbl_qty.product_qty AS qty, qty_stock_purchase.*, categories.category_name FROM `cart_tbl_qty`
-INNER JOIN qty_stock_purchase ON qty_stock_purchase.c_id = cart_tbl_qty.product_id
+$getCartItems = mysqli_query($connect, "SELECT cart_tbl_qty.*,cart_tbl_qty.id AS cartID, cart_tbl_qty.id AS stockId, cart_tbl_qty.product_qty AS qty, qty_stock_purchase.*, categories.category_name FROM `cart_tbl_qty`
+INNER JOIN qty_stock_purchase ON qty_stock_purchase.id = cart_tbl_qty.stock_id
 INNER JOIN categories ON categories.id = qty_stock_purchase.c_id
 WHERE cart_tbl_qty.c_id = '$c_id' AND cart_tbl_qty.sell_status = '0' ORDER BY cart_tbl_qty.product_qty DESC");
 
@@ -75,7 +75,7 @@ if (isset($_POST['generatePdf'])) {
 
         $netProfitAndLoss = $product_qty * $price;
 
-        // $insertProfit = mysqli_query($connect, "INSERT INTO profit_loss(product_id, cash_sell, profit_product, customer_id, custom_date, prod_qty_total, sold_price)VALUES('$product_id', '1', '$netProfitAndLoss', '$c_id', '$customDate', '$product_qty', '$price')");
+        $insertProfit = mysqli_query($connect, "INSERT INTO profit_loss_qty(product_id, customer_id, custom_date, prod_qty_total, sold_price)VALUES('$product_id',  '$c_id', '$customDate', '$product_qty', '$price')");
     }
 
 

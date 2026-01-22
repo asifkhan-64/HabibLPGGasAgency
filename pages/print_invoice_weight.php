@@ -137,7 +137,7 @@ include '../_partials/header.php';
                                 $getInvoiceItemsLoop = mysqli_query($connect, "SELECT customer_weight_invoice.*, customer_weight_invoice.prod_qty AS qty, weight_stock_purchase.*, categories.category_name, categories.stock_available FROM `customer_weight_invoice`
                                 INNER JOIN weight_stock_purchase ON weight_stock_purchase.c_id = customer_weight_invoice.prod_id
                                 INNER JOIN categories ON categories.id = weight_stock_purchase.c_id
-                                WHERE customer_weight_invoice.cus_id = '$id'  AND customer_weight_invoice.invoice_no = '$invoiceNo'");
+                                WHERE customer_weight_invoice.cus_id = '$id'  AND customer_weight_invoice.invoice_no = '$invoiceNo'  GROUP BY customer_weight_invoice.prod_id");
                                 
                                 $getTotal = 0;
 

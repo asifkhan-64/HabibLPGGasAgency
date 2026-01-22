@@ -195,6 +195,13 @@ $fet = mysqli_fetch_assoc($get);
                         </li>
 
                         <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-cart-plus"></i> <span> Cylinders</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="cylinders_list.php">Cylinders List</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-cart "></i> <span> Purchase</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
                                 <li><a href="purchase_stock.php">Purchase Stock</a></li>
@@ -212,10 +219,18 @@ $fet = mysqli_fetch_assoc($get);
                         </li>
 
                         <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-undo"></i> <span> Recovery</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-undo"></i> <span>Payment Recovery</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
                                 <li><a href="customer_pay.php">Add Payment Details</a></li>
                                 <li><a href="customer_pay_list.php">Payment List</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa fa-tasks"></i> <span> Manage Cylinders</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="add_cylinders.php">Add Cylinders</a></li>
+                                <li><a href="cylinders_list_customers.php">Cylinders List</a></li>
                                 <li><a href="customer_cylinders.php">Cylinder Return</a></li>
                                 <li><a href="customer_cylinder_list.php">Cylinder Return List</a></li>
                             </ul>

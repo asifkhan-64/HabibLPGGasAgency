@@ -17,10 +17,11 @@
         $email = $_POST['editEmail'];
         $password = $_POST['editPassword'];
         $contact = $_POST['edit_contact'];
+        $id = $_POST['id'];
 
         
 
-            $editUserQuery = mysqli_query($connect, "UPDATE login_user SET name = '$name', password = '$password', email = '$email', contact = '$contact' WHERE id = '1'");
+            $editUserQuery = mysqli_query($connect, "UPDATE login_user SET name = '$name', password = '$password', email = '$email', contact = '$contact' WHERE id = '$id'");
             if (!$editUserQuery) {
                 $userNotUpdated = "Failed to update. Try Again!";
             }else {
@@ -58,7 +59,7 @@
                                                     <input class="form-control" name="editName" type="text" value="<?php echo $fetch_selectUser['name'] ?>" id="example-text-input">
                                                 </div>
                                             </div>
-                                            <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                            <input type="hidden" name="id" value="<?php echo $fetch_selectUser['id']; ?>">
 
                                             <div class="form-group row">
                                                 <label for="example-email-input" class="col-sm-2 col-form-label">Contact</label>
