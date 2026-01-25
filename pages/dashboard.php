@@ -5,6 +5,17 @@ if (empty($_SESSION["user"])) {
     header("LOCATION:../index.php");
 }
 
+$customerQuery = mysqli_query($connect, "SELECT COUNT(*) AS allCustomers FROM `customer_add`");
+$fetCustomers = mysqli_fetch_assoc($customerQuery);
+$customers = $fetCustomers['allCustomers'];
+
+$duesCustomers = mysqli_query($connect, "SELECT SUM(total_dues) AS allDues FROM `customer_add`");
+$fetDuesCustomers = mysqli_fetch_assoc($duesCustomers);
+$cusdues = $fetDuesCustomers['allDues'];
+
+$remCylindersQuery = mysqli_query($connect, "SELECT SUM(remaining_cylinders) AS remCylinders FROM `customer_add`");
+$fetRemCylinders = mysqli_fetch_assoc($remCylindersQuery);
+$remCylinders = $fetRemCylinders['remCylinders'];
 
 // $getCountofExpenseOfToday = mysqli_query($connect, "SELECT SUM(expense_amount) AS totalExpenseToday FROM expense WHERE DATE(expense_date) = CURDATE()");
 // $fetchExpenseToday = mysqli_fetch_assoc($getCountofExpenseOfToday);
@@ -63,15 +74,15 @@ include('../_partials/header.php');
                     <div class="timeline animate__animated animate__bounce">
                         <span class="icon fa fa-calendar"></span>
                         <a class="timeline-content" style="box-shadow: 3px 3px 3px 3px #ccc">
-                            <h3 class="title" align="center">Daily Expense</h3>
+                            <h3 class="title" align="center">Customers</h3>
                             <hr>
                             <p class="description" align="center">
                                  
                                 <?php
-                                if (empty($todayExpense)) {
+                                if (empty($customers)) {
                                     echo "0";
                                 } else {
-                                    echo $todayExpense;
+                                    echo $customers;
                                 }
                                 ?>
                             </p>
@@ -81,14 +92,14 @@ include('../_partials/header.php');
                     <div class="timeline animate__animated animate__bounce">
                         <span class="icon fa fa-window-close"></span>
                         <a class="timeline-content" style="box-shadow: 3px 3px 3px 3px #ccc">
-                            <h3 class="title" align="center">Users</h3>
+                            <h3 class="title" align="center">Customer Dues</h3>
                             <hr>
                             <p class="description" align="center">
                                  <?php
-                                    if (empty($workers)) {
+                                    if (empty($cusdues)) {
                                         echo "0";
                                     } else {
-                                        echo number_format($workers);
+                                        echo "Pkr. ".number_format($cusdues);
                                     }
                                     ?>
                             </p>
@@ -98,15 +109,15 @@ include('../_partials/header.php');
                     <div class="timeline animate__animated animate__bounce">
                         <span class="icon fa fa-calendar"></span>
                         <a class="timeline-content" style="box-shadow: 3px 3px 3px 3px #ccc">
-                            <h3 class="title" align="center">Clients</h3>
+                            <h3 class="title" align="center">Pending Cylinders</h3>
                             <hr>
                             <p class="description" align="center">
                                  
                                 <?php
-                                if (empty($tillOneSale)) {
+                                if (empty($remCylinders)) {
                                     echo "0";
                                 } else {
-                                    echo number_format($tillOneSale);
+                                    echo number_format($remCylinders);
                                 }
                                 ?>
                             </p>

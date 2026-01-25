@@ -11,6 +11,7 @@ $DbName             = "habibgasagency";
 $backup_name        = "MyBackUp.sql";
 $tables             = array(
     "bank_accounts", 
+    "bank_balance_management",
     "cart_tbl_qty",
     "cart_tbl_weight",
     "categories",
@@ -21,9 +22,13 @@ $tables             = array(
     "customer_summary_weight",
     "customer_weight_invoice",
     "cylinder_recovery",
+    "cylinder_types",
+    "cylinder_type_add",
     "expense",
     "expense_category",
     "login_user",
+    "profit_loss_qty",
+    "profit_loss_weight",
     "qty_prices",
     "qty_stock_purchase",
     "shop_info",

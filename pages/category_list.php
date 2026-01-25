@@ -95,6 +95,7 @@ include('../_partials/header.php');
                                     <th>#</th>
                                     <th>Category Name</th>
                                     <th>Category Type</th>
+                                    <th>Unique ID</th>
                                     <th class="text-center"> <i class="fa fa-edit"></i>
                                     </th>
                                 </tr>
@@ -110,7 +111,8 @@ include('../_partials/header.php');
                                         <td>' . $iteration++ . '</td>
                                         <td>' . $rowCats['category_name'] . '</td>
                                         <td>' . $rowCats['category_type'] . '</td>
-                                        <td class="text-center"><a href="category_edit.php?id=' . $rowCats['id'] . '" type="button" class="btn text-white btn-warning waves-effect waves-light">Edit</a></td>
+                                        <td><a href="unique_id.php?id=' . $rowCats['id'] . '" type="button" class="btn text-white btn-primary waves-effect waves-light">View</a></td>
+                                        <td><a href="category_edit.php?id=' . $rowCats['id'] . '" type="button" class="btn text-white btn-warning waves-effect waves-light">Edit</a></td>
                                     </tr>
                                     ';
                                 }

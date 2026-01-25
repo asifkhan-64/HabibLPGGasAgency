@@ -193,6 +193,8 @@ $fet = mysqli_fetch_assoc($get);
                                 <li><a href="category_list.php">Category List</a></li>
                             </ul>
                         </li>
+                        
+                        
 
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-cart-plus"></i> <span> Cylinders</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
@@ -236,26 +238,7 @@ $fet = mysqli_fetch_assoc($get);
                             </ul>
                         </li>
 
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-synagogue"></i> <span> Company Details </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="shop_info.php">Company Info</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-user"></i> <span> Admin</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="profile.php">Profile</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-database"></i> <span> Backup</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="backup_page.php">DB Backup</a></li>
-                            </ul>
-                        </li>
+                        
 
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-users"></i> <span> Accounts </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
@@ -277,6 +260,41 @@ $fet = mysqli_fetch_assoc($get);
                                 <li><a href="expense_new.php">Add Expense</a></li>
                                 <li><a href="expense_list.php">Expenses List</a></li>
                                 
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-quote-right"></i> <span> Prices</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="prices_list.php">Prices List</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-quote-right"></i> <span> Reports</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="prices_list.php">Prices List</a></li>
+                            </ul>
+                        </li> -->
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-synagogue"></i> <span> Company Details </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="shop_info.php">Company Info</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-user"></i> <span> Admin</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="profile.php">Profile</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-database"></i> <span> Backup</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="backup_page.php">DB Backup</a></li>
                             </ul>
                         </li>
 

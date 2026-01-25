@@ -28,11 +28,11 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Account</th>
-                                    <th>Credit</th>
-                                    <th>Debit</th>
+                                    <th class="text-center">Credit</th>
+                                    <th class="text-center">Debit</th>
                                     <th>Date</th>
                                     <th>Description</th>
-                                    <th class="text-center"> <i class="fa fa-edit"></i></th>
+                                    <!-- <th class="text-center"> <i class="fa fa-edit"></i></th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,13 +50,13 @@
                                             if ($rowTransaction['credit'] > 0) {
                                                 echo '<td><span class="badge badge-success" style="font-size: 16px">' . $rowTransaction['credit'] . '</span></td>';
                                             } else {
-                                                echo '<td><span class="badge badge-secondary" style="font-size: 16px">-</span></td>';
+                                                echo '<td class="text-center">***</td>';
                                             }
 
                                             if ($rowTransaction['debit'] > 0) {
-                                                echo '<td><span class="badge badge-success" style="font-size: 16px">' . $rowTransaction['debit'] . '</span></td>';
+                                                echo '<td><span class="badge badge-danger" style="font-size: 16px">' . $rowTransaction['debit'] . '</span></td>';
                                             } else {
-                                                echo '<td><span class="badge badge-secondary" style="font-size: 16px">-</span></td>';
+                                                echo '<td class="text-center">***</td>';
                                             }
 
                                             
@@ -66,11 +66,11 @@
                                             <td>'.$rowTransaction['description'].'</td>
 
                                             
-                                            <td class="text-center">
-                                                <a href="expense_edit.php?id='.$rowTransaction['id'].'" type="button" class="btn text-white btn-warning waves-effect waves-light btn-sm">Edit</a>
-                                            </td>
-                                            ';
                                             
+                                            ';
+                                            // <td class="text-center">
+                                            //     <a href="bank_in_balance_edit.php?id='.$rowTransaction['id'].'" type="button" class="btn text-white btn-warning waves-effect waves-light btn-sm">Edit</a>
+                                            // </td>
 
                                             echo '
                                         </tr>
