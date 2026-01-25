@@ -262,6 +262,8 @@ $fet = mysqli_fetch_assoc($get);
                             <ul class="list-unstyled">
                                 <li><a href="account_add.php">Add Account</a></li>
                                 <li><a href="account_list.php">Account List</a></li>
+                                <li><a href="bank_in_balance.php">Balance Management</a></li>
+                                <li><a href="bank_management_list.php">Bank Balance List</a></li>
                             </ul>
                         </li>
 

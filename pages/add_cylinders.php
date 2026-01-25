@@ -21,11 +21,11 @@ if (isset($_POST['addRecovery'])) {
     $cylinder_type = $fetchType['cylinder_type'];
 
     $column_name = strtolower(str_replace(' ', '_', $cylinder_type));
-    $column_name = preg_replace('/[^a-z0-9_]/', '', $column_name);
+    $column_name_db = preg_replace('/[^a-z0-9_]/', '', $column_name);
 
     $getQty = mysqli_query($connect, "SELECT `$column_name`, other_cylinders FROM `customer_add` WHERE c_id = '$c_id'");
     $fetchQty = mysqli_fetch_assoc($getQty);
-    $qty = $fetchQty[$column_name];
+    $qty = $fetchQty[$column_name_db];
     $other = $fetchQty['other_cylinders'];
 
     
@@ -37,7 +37,7 @@ if (isset($_POST['addRecovery'])) {
             </div>";
     } else {
 
-        $updateCustomerAdd = mysqli_query($connect, "UPDATE `customer_add` SET `$column_name` = `$qty` + '$rec_rem_cylinders', other_cylinders = $other - '$rec_rem_cylinders' WHERE c_id = '$c_id'");
+        $updateCustomerAdd = mysqli_query($connect, "UPDATE `customer_add` SET `$column_name_db` = '$qty' + '$rec_rem_cylinders', other_cylinders = '$other' - '$rec_rem_cylinders' WHERE c_id = '$c_id'");
 
         $queryAddPayment = mysqli_query(
             $connect,
@@ -58,17 +58,17 @@ if (isset($_POST['addRecovery'])) {
                 Payment Not Added!
             </div>';
         } else {
-            $queryUpdateCustomerTblBalance = mysqli_query($connect, "UPDATE customer_add SET remaining_cylinders = (remaining_cylinders - $rec_rem_cylinders) WHERE c_id = '$c_id'");
+        //     $queryUpdateCustomerTblBalance = mysqli_query($connect, "UPDATE customer_add SET remaining_cylinders = (remaining_cylinders - $rec_rem_cylinders) WHERE c_id = '$c_id'");
 
 
-            if (!$queryUpdateCustomerTblBalance) {
+            // if (!$queryUpdateCustomerTblBalance) {
                 $notAdded = '
                 <div class="alert alert-danger text-center">
                     Customer Record Not Updated!
                 </div>';
-            } else {
+            // } else {
                 header("LOCATION: customer_cylinder_list.php");
-            }
+            // }
         }
     }
 }
