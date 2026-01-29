@@ -428,7 +428,7 @@ $fet = mysqli_fetch_assoc($get);
                     <div class="topbar-left d-none d-lg-block">
                         <div class="text-center pt-2">
                             <a class="text-white ">
-                                <h5 class="animate__animated animate__bounce"><img  src="../assets/logo.png" width="15%">&nbsp;&nbsp;&nbsp;<?php echo $fet['shop_title']; ?></h5>
+                                <h5 class="animate__animated animate__bounce" style="font-size: 12px"><img  src="../assets/logo.png" width="15%">&nbsp;&nbsp;&nbsp;<?php echo $fet['shop_title']; ?></h5>
                             </a>
                         </div>
                     </div>

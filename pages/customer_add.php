@@ -14,6 +14,7 @@ if (isset($_POST['addCustomer'])) {
     $customer_name = $_POST['customer_name'];
     $customer_contact = $_POST['customer_contact'];
     $customer_address = $_POST['customer_address'];
+    $customer_dues = $_POST['customer_dues'];
 
     $countQuery = mysqli_query($connect, "SELECT COUNT(*) AS customers FROM `customer_add` WHERE customer_contact = '$customer_contact'");
     $fetch_countQuery = mysqli_fetch_assoc($countQuery);
@@ -24,11 +25,13 @@ if (isset($_POST['addCustomer'])) {
             "INSERT INTO `customer_add`(
                 `customer_name`,
                  `customer_contact`,
-                   `customer_address`
+                   `customer_address`,
+                    `total_dues`
                 ) VALUES (
                     '$customer_name',
                      '$customer_contact',
-                        '$customer_address'
+                        '$customer_address',
+                            '$customer_dues'
             )
            "
         );
@@ -87,8 +90,13 @@ include('../_partials/header.php')
 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Address</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-4">
                                     <input type="text" class="form-control" name="customer_address" placeholder="Address" required="">
+                                </div>
+                                
+                                <label class="col-sm-2 col-form-label">Dues</label>
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control" name="customer_dues" placeholder="Dues" required="">
                                 </div>
                             </div>
 

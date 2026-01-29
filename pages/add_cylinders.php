@@ -67,7 +67,7 @@ if (isset($_POST['addRecovery'])) {
                     Customer Record Not Updated!
                 </div>';
             // } else {
-                header("LOCATION: customer_cylinder_list.php");
+                header("LOCATION: cylinders_list_customers.php");
             // }
         }
     }

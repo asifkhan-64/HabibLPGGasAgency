@@ -20,14 +20,15 @@ if (isset($_POST['updateCustomer'])) {
     $customer_name = $_POST['customer_name'];
     $customer_contact = $_POST['customer_contact'];
     $customer_address = $_POST['customer_address'];
+    $customer_dues = $_POST['customer_dues'];
 
-    $countQuery = mysqli_query($connect, "SELECT COUNT(*) AS customers FROM `customer_add` WHERE customer_contact = '$customer_contact'");
-    $fetch_countQuery = mysqli_fetch_assoc($countQuery);
+    // $countQuery = mysqli_query($connect, "SELECT COUNT(*) AS customers FROM `customer_add` WHERE customer_contact = '$customer_contact'");
+    // $fetch_countQuery = mysqli_fetch_assoc($countQuery);
 
-    if ($fetch_countQuery['customers'] < 1) {
+    // if ($fetch_countQuery['customers'] < 1) {
         $queryUpdateCustomer = mysqli_query(
             $connect,
-            "UPDATE `customer_add` SET `customer_name` = '$customer_name', `customer_contact` = '$customer_contact', `customer_address` = '$customer_address' WHERE c_id = '$id'
+            "UPDATE `customer_add` SET `customer_name` = '$customer_name', `customer_contact` = '$customer_contact', `customer_address` = '$customer_address', `total_dues` = '$customer_dues' WHERE c_id = '$id'
            "
         );
 
@@ -40,13 +41,13 @@ if (isset($_POST['updateCustomer'])) {
         } else {
             header("LOCATION: customers_list.php");
         }
-    } else {
-        $notAdded = '
-            <div class="alert alert-danger text-center">
-                Customer Contact already added!
-            </div>
-            ';
-    }
+    // } else {
+    //     $notAdded = '
+    //         <div class="alert alert-danger text-center">
+    //             Customer Contact already added!
+    //         </div>
+    //         ';
+    // }
 }
 
 
@@ -86,9 +87,14 @@ include('../_partials/header.php')
                             <hr />
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Shop Address</label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-2 col-form-label">Address</label>
+                                <div class="col-sm-4">
                                     <input type="text" class="form-control" name="customer_address" placeholder="Shop Address" required="" value="<?php echo $fetch_retCustomers['customer_address'] ?>">
+                                </div>
+
+                                <label class="col-sm-2 col-form-label">Dues</label>
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control" name="customer_dues" placeholder="Dues" required="" value="<?php echo $fetch_retCustomers['total_dues'] ?>">
                                 </div>
                             </div>
 

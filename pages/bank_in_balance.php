@@ -38,6 +38,7 @@ if (isset($_POST['addEntry'])) {
             )"
         );
         $updateBankAmount = mysqli_query($connect, "UPDATE `bank_accounts` SET `total_amount` = total_amount + '$amount' WHERE bank_id = '$c_id'");
+        header("LOCATION: bank_management_list.php");
     } elseif ($type == 'debit') {
         $credit = 0;
         $debit = $amount;
@@ -60,6 +61,7 @@ if (isset($_POST['addEntry'])) {
             )"
         );
         $updateBankAmount = mysqli_query($connect, "UPDATE `bank_accounts` SET `total_amount` = total_amount - '$amount' WHERE bank_id = '$c_id'");
+        header("LOCATION: bank_management_list.php");
     }
 
     

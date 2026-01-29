@@ -36,11 +36,11 @@ include('../_partials/header.php');
             <div class="col-4">
                 <div class="card m-b-30">
                     <div class="card-body">
-                        <h3  class="text-center" >Tracking ID</h3><hr>
+                        <h5  class="text-center" >Tracking ID</h5><hr>
                         <h1 class="text-center p-5" style="font-size:80px; font-family: Lucida Handwriting"><?php echo $rowCategoryData['id']; ?></h1>
                         <hr>
-                        <h3  class="text-center" ><?php echo $rowCategoryData['category_name']; ?></h3>
-                        <h3  class="text-center" >Price: <?php echo $rowCategoryData['sell_price']." / ".$textToShow; ?></h3>
+                        <h5  class="text-center" ><?php echo $rowCategoryData['category_name']; ?></h5>
+                        <h5  class="text-center" >Price: <?php echo $rowCategoryData['sell_price']." / ".$textToShow; ?></h5>
                     </div>
                 </div>
             </div>
