@@ -48,6 +48,7 @@ if (isset($_POST['addStock'])) {
             </div>';
     } else {
         $updateCategoryTbl = mysqli_query($connect, "UPDATE categories SET stock_available = stock_available + '$product_qty', sell_price = '$retail_price' WHERE id = '$c_id'");
+        $updateVendor = mysqli_query($connect, "UPDATE vendor_tbl SET total_sale = total_sale + '$total_purchase_amount', total_dues = total_dues + '$total_purchase_amount' WHERE v_id = '$v_id'");
         // $updateVendor = mysqli_query($connect, "UPDATE categories SET stock_available = stock_available + '$product_qty', sell_price = '$retail_price' WHERE id = '$c_id'");
         header("LOCATION: weight_stock_list.php");
     }

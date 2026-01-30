@@ -24,6 +24,8 @@ if (isset($_POST['updateStock'])) {
 
     $getOldData = mysqli_query($connect, "SELECT * FROM weight_stock_purchase WHERE id = '$id'");
     $fetchOldData = mysqli_fetch_assoc($getOldData);
+    $findDifference =  $total_purchase_amount - $fetchOldData['total_purchase_amount'];
+
 
     
 
@@ -42,10 +44,11 @@ if (isset($_POST['updateStock'])) {
                 cost_price = '$cost_price',
                 retail_price = '$retail_price',
                 purchase_date = '$purchase_date'
-             WHERE id = '$id'"
+            WHERE id = '$id'"
         );
 
         $updateCategoryTbl = mysqli_query($connect, "UPDATE categories SET stock_available = stock_available + '$differenceQty' WHERE id = '$c_id'");
+        
         
     }else {
         $oldQty = $fetchOldData['product_qty'];
@@ -66,6 +69,9 @@ if (isset($_POST['updateStock'])) {
 
         $updateCategoryTbl = mysqli_query($connect, "UPDATE categories SET stock_available = stock_available - '$differenceQty', sell_price = '$retail_price' WHERE id = '$c_id'");
     }
+
+    $updateVendor = mysqli_query($connect, "UPDATE vendor_tbl SET total_sale = '$findDifference' + total_sale, total_dues = '$findDifference' + total_dues WHERE v_id = '$v_id'");
+
 
    
 

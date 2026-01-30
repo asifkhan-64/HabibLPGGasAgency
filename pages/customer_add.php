@@ -15,6 +15,7 @@ if (isset($_POST['addCustomer'])) {
     $customer_contact = $_POST['customer_contact'];
     $customer_address = $_POST['customer_address'];
     $customer_dues = $_POST['customer_dues'];
+    $customer_rem_cylinder = $_POST['customer_rem_cylinder'];
 
     $countQuery = mysqli_query($connect, "SELECT COUNT(*) AS customers FROM `customer_add` WHERE customer_contact = '$customer_contact'");
     $fetch_countQuery = mysqli_fetch_assoc($countQuery);
@@ -26,12 +27,16 @@ if (isset($_POST['addCustomer'])) {
                 `customer_name`,
                  `customer_contact`,
                    `customer_address`,
-                    `total_dues`
+                    `total_dues`,
+                     `other_cylinders`,
+                      `remaining_cylinders`
                 ) VALUES (
                     '$customer_name',
                      '$customer_contact',
                         '$customer_address',
-                            '$customer_dues'
+                            '$customer_dues',
+                             '$customer_rem_cylinder',
+                              '$customer_rem_cylinder'
             )
            "
         );
@@ -97,6 +102,13 @@ include('../_partials/header.php')
                                 <label class="col-sm-2 col-form-label">Dues</label>
                                 <div class="col-sm-4">
                                     <input type="number" class="form-control" name="customer_dues" placeholder="Dues" required="">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Rem Cylinder</label>
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control" name="customer_rem_cylinder" placeholder="Rem Cylinder" required="">
                                 </div>
                             </div>
 

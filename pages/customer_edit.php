@@ -21,16 +21,38 @@ if (isset($_POST['updateCustomer'])) {
     $customer_contact = $_POST['customer_contact'];
     $customer_address = $_POST['customer_address'];
     $customer_dues = $_POST['customer_dues'];
+    $customer_rem_cylinder = $_POST['customer_rem_cylinder'];
 
     // $countQuery = mysqli_query($connect, "SELECT COUNT(*) AS customers FROM `customer_add` WHERE customer_contact = '$customer_contact'");
     // $fetch_countQuery = mysqli_fetch_assoc($countQuery);
 
     // if ($fetch_countQuery['customers'] < 1) {
+        $checkCylinders = mysqli_query($connect, "SELECT * FROM `customer_add` WHERE c_id = '$id'");
+        $fetch_checkCylinders = mysqli_fetch_assoc($checkCylinders);
+        $remCylinders = $fetch_checkCylinders['remaining_cylinders'];
+
+        $findDifference = $customer_rem_cylinder - $remCylinders;
+
+
         $queryUpdateCustomer = mysqli_query(
-            $connect,
-            "UPDATE `customer_add` SET `customer_name` = '$customer_name', `customer_contact` = '$customer_contact', `customer_address` = '$customer_address', `total_dues` = '$customer_dues' WHERE c_id = '$id'
-           "
-        );
+                $connect, "UPDATE `customer_add` SET `customer_name` = '$customer_name', `customer_contact` = '$customer_contact', `customer_address` = '$customer_address', `total_dues` = '$customer_dues', `remaining_cylinders` = '$findDifference' + `remaining_cylinders`, `other_cylinders` = '$findDifference' + `other_cylinders` WHERE c_id = '$id'
+                ");
+
+        // if ($customer_rem_cylinder > $remCylinders) {
+        //     $queryUpdateCustomer = mysqli_query(
+        //         $connect,
+        //         "UPDATE `customer_add` SET `customer_name` = '$customer_name', `customer_contact` = '$customer_contact', `customer_address` = '$customer_address', `total_dues` = '$customer_dues', `remaining_cylinders` = '$customer_rem_cylinder' WHERE c_id = '$id'
+        //     "
+        //     );
+        // }else {
+        //     $queryUpdateCustomer = mysqli_query(
+        //         $connect,
+        //         "UPDATE `customer_add` SET `customer_name` = '$customer_name', `customer_contact` = '$customer_contact', `customer_address` = '$customer_address', `total_dues` = '$customer_dues', `remaining_cylinders` = '$customer_rem_cylinder' WHERE c_id = '$id'
+        //     "
+        //     );
+        // }
+
+        
 
         if (!$queryUpdateCustomer) {
             $notAdded = '
@@ -95,6 +117,13 @@ include('../_partials/header.php')
                                 <label class="col-sm-2 col-form-label">Dues</label>
                                 <div class="col-sm-4">
                                     <input type="number" class="form-control" name="customer_dues" placeholder="Dues" required="" value="<?php echo $fetch_retCustomers['total_dues'] ?>">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Rem Cylinder</label>
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control"  name="customer_rem_cylinder" placeholder="Rem Cylinder" required="" value="<?php echo $fetch_retCustomers['remaining_cylinders'] ?>">
                                 </div>
                             </div>
 

@@ -22,14 +22,22 @@ if (isset($_POST['updateVendor'])) {
     $vendor_address = $_POST['vendor_address'];
     $vendor_bank = $_POST['vendor_bank'];
     $vendor_account = $_POST['vendor_account'];
+    $vendor_dues = $_POST['vendor_dues'];
 
     $countQuery = mysqli_query($connect, "SELECT COUNT(*) AS Vendors FROM `vendor_tbl` WHERE vendor_contact = '$vendor_contact'");
     $fetch_countQuery = mysqli_fetch_assoc($countQuery);
 
     if ($fetch_countQuery['Vendors'] < 1) {
+
+    $checkVendor = mysqli_query($connect, "SELECT * FROM `vendor_tbl` WHERE v_id = '$id'");
+    $fetch_checkVendor = mysqli_fetch_assoc($checkVendor);
+    $remDues = $fetch_checkVendor['total_dues'];
+
+    $findDifferenceDues = $vendor_dues - $remDues;
+        
         $queryUpdateVendor = mysqli_query(
             $connect,
-            "UPDATE `vendor_tbl` SET `vendor_name` = '$vendor_name', `vendor_contact` = '$vendor_contact', `vendor_address` = '$vendor_address', `vendor_bank` = '$vendor_bank', `vendor_account` = '$vendor_account' WHERE v_id = '$id'
+            "UPDATE `vendor_tbl` SET `vendor_name` = '$vendor_name', `vendor_contact` = '$vendor_contact', `vendor_address` = '$vendor_address', `vendor_bank` = '$vendor_bank', `vendor_account` = '$vendor_account', `total_dues` = '$findDifferenceDues' + `total_dues`, `total_sale` = '$findDifferenceDues' + `total_sale` WHERE v_id = '$id'
            "
         );
 
@@ -101,6 +109,13 @@ include('../_partials/header.php')
                                 <label class="col-sm-2 col-form-label">Account No</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" name="vendor_account" value="<?php echo $fetch_retVendor['vendor_account'] ?>" placeholder="Account Number" required="">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Dues</label>
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control" value="<?php echo $fetch_retVendor['total_dues'] ?>" name="vendor_dues" placeholder="Dues" required="">
                                 </div>
                             </div>
 

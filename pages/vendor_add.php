@@ -15,6 +15,7 @@ if (isset($_POST['addVendor'])) {
     $vendor_address = $_POST['vendor_address'];
     $vendor_bank = $_POST['vendor_bank'];
     $vendor_account = $_POST['vendor_account'];
+    $vendor_dues = $_POST['vendor_dues'];
 
 
     $countQuery = mysqli_query($connect, "SELECT COUNT(*) AS Vendors FROM `vendor_tbl` WHERE vendor_contact = '$vendor_contact'");
@@ -28,13 +29,17 @@ if (isset($_POST['addVendor'])) {
                  `vendor_contact`,
                   `vendor_address`,
                    `vendor_bank`,
-                    `vendor_account`
+                    `vendor_account`,
+                     `total_dues`,
+                      `total_sale`
                 ) VALUES (
                     '$vendor_name',
                      '$vendor_contact',
                       '$vendor_address',
                         '$vendor_bank',
-                         '$vendor_account'
+                         '$vendor_account',
+                            total_dues + '$vendor_dues',
+                            total_sale + '$vendor_dues'
             )
            "
         );
@@ -76,7 +81,7 @@ include('../_partials/header.php')
                 <div class="card m-b-30">
                     <div class="card-body">
                         <form method="POST">
-                            <h4 class="mb-4 page-title"><u>Vendor Detials</u></h4>
+                            <h4 class="mb-4 page-title"><u>Vendor Details</u></h4>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-4">
@@ -107,6 +112,13 @@ include('../_partials/header.php')
                                 <label class="col-sm-2 col-form-label">Account No</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" name="vendor_account" placeholder="Account Number" required="">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Dues</label>
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control" name="vendor_dues" placeholder="Dues" required="">
                                 </div>
                             </div>
 
