@@ -264,6 +264,20 @@ $fet = mysqli_fetch_assoc($get);
                         </li>
 
                         <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-book"></i> <span> Reports</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="vendor_report.php">Vendors Report</a></li>
+                                <li><a href="customer_sell_report.php">Customers Sell Report</a></li>
+                                <li><a href="customer_dues_report.php">Customer Dues Report</a></li>
+                                <!-- <li><a href="rem_cylinders_report.php">Remaining Cylinder Report</a></li> -->
+                                <li><a href="purchase_report.php">Purchase Report</a></li>
+                                <li><a href="stock_report.php">Stock Report</a></li>
+                                <li><a href="report_daily_expense.php">Daily Expense Report</a></li>
+                                <!-- <li><a href="profit_loss_report.php">Profit & Loss Report</a></li> -->
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-quote-right"></i> <span> Prices</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
                                 <li><a href="prices_list.php">Prices List</a></li>
@@ -395,19 +409,7 @@ $fet = mysqli_fetch_assoc($get);
 
                         
 
-                        <!-- <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-book"></i> <span> Reports</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                            <ul class="list-unstyled">
-                                <li><a href="wages_report.php">Wages Report</a></li>
-                                <li><a href="utility_report.php">Utility Bills Report</a></li>
-                                <li><a href="expense_report.php">Expenses Report</a></li>
-                                <li><a href="tillone_report.php">Till 1 Report</a></li>
-                                <li><a href="tilltwo_report.php">Till 2 Report</a></li>
-                                <li><a href="weekly_summary_report.php">Weekly Summary</a></li>
-                                <li><a href="grocery_report.php">Grocery Report</a></li>
-                                <li><a href="report_daily_expense.php">Daily Expense Report</a></li>
-                            </ul>
-                        </li> -->
+                        
                         
                         
 

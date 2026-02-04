@@ -95,7 +95,7 @@ include '../_partials/header.php';
                     <div class="col-6">
                         <div class="invoice-title text-right">
                             <u><b style="font-size: 80%;  line-height: 5px;">Billing Details</b></u>
-                            <p class="text-right font-16 customP" style="font-size: 70%; line-height: 12px"><span style="font-weight:600">Invoice No: </span> CA-00<?php echo $invoiceNo ?></p>
+                            <p class="text-right font-16 customP" style="font-size: 70%; line-height: 12px"><span style="font-weight:600">Invoice No: </span> WT-00<?php echo $invoiceNo ?></p>
                             <p class="text-right font-16 customP" style="font-size: 70%; line-height: 12px"><span style="font-weight:600">Bill Date: </span> <?php echo $fetch_getInvoiceItems['custom_date'] ?></p>
                             <p class="text-right font-16 customP" style="font-size: 70%; line-height: 12px"><span style="font-weight:600">Contact: </span> 0<?php echo $fet['shop_contact'] ?></p>
                             <p class="text-right font-16 customP" style="font-size: 70%; line-height: 12px"><span style="font-weight:600"></span> 0<?php echo $fet['shop_contact_two'] ?></p>
