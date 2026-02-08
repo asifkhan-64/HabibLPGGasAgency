@@ -30,15 +30,13 @@ if (isset($_POST['addPayment'])) {
                  `total_amount`,
                   `paid_amount`,
                    `remaining_amount`,
-                     `pay_date`,
-                      `bill_no`
+                     `pay_date`
                 ) VALUES (
                     '$v_id',
                      '$total_amount',
                       '$paid_amount',
                        '$remaining_amount',
-                         '$pay_date',
-                          '$bill_no'
+                         '$pay_date'
             )
            "
         );
@@ -54,10 +52,9 @@ if (isset($_POST['addPayment'])) {
             // </div>';
         } else {
             $queryUpdateVendorTblBalance = mysqli_query($connect, "UPDATE vendor_tbl SET total_paid = (total_paid + $paid_amount), total_dues = (total_dues - $paid_amount) WHERE v_id = '$v_id'");
-            $updateVendorSummary = mysqli_query($connect, "UPDATE vendor_summary SET paid_amount = (paid_amount + $paid_amount), remaining_amount = (remaining_amount - $paid_amount) WHERE v_id = '$v_id' AND bill_no = '$bill_no'");
 
 
-            if (!$updateVendorSummary) {
+            if (!$queryUpdateVendorTblBalance) {
                 $notAdded = '
             <div class="alert alert-danger text-center">
                 Vendor Table Balance Not Updated!
@@ -178,12 +175,57 @@ include('../_partials/header.php')
 </script>
 
 <script type="text/javascript" src="../assets/js/select2.min.js"></script>
+
 <script type="text/javascript">
     // $('.comp').select2({
     //     placeholder: 'Select an option',
     //     allowClear: true
 
     // });
+
+    $(document).ready(function() {
+    // Set default values
+    $('#paid_amount').val('0');
+    $('#remaining_amount').val('0');
+
+    $('#paid_amount').keyup(function() {
+        // Validation: Ensure the value is a number
+        if (isNaN($(this).val()) || $(this).val() === "") {
+            $('#remaining_amount').val($('#rem_dues').val());
+            return;
+        }
+
+        var paidAmount = parseFloat($(this).val());
+        var totalAmount = parseFloat($('#rem_dues').val());
+        
+        // Calculate Remaining Amount
+        var remainingAmount = totalAmount - paidAmount;
+        $('#remaining_amount').val(remainingAmount.toFixed(2));
+
+        // Logic for Pay Amount > Total Amount
+        if (paidAmount > totalAmount) {
+            // Disable the Add Payment button
+            $('button[name="addPayment"]').prop('disabled', true);
+            
+            // Turn the Remaining Amount field background red
+            $('#remaining_amount').css({
+                'background-color': '#ffcccc',
+                'color': '#ff0000',
+                'border': '1px solid #ff0000'
+            });
+        } else {
+            // Re-enable the button
+            $('button[name="addPayment"]').prop('disabled', false);
+            
+            // Reset Remaining Amount field style
+            $('#remaining_amount').css({
+                'background-color': '',
+                'color': '',
+                'border': ''
+            });
+        }
+    });
+});
 
     $(document).ready(function() {
         $selectElement = $('.comp').select2({

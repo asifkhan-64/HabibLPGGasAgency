@@ -29,7 +29,12 @@ if (isset($_POST['makeInvoice'])) {
         $product_qty = $arr_product_qty[$i];
         $product_id = $arr_product_id[$i];
         $price = $arr_price[$i];
-        $stock_id = $arr_stockid[$i];
+
+        $checkQuery = mysqli_query($connect, "SELECT * FROM qty_stock_purchase WHERE product_qty >= $product_qty AND c_id = '$product_id'");
+        $fetch_checkQuery = mysqli_fetch_assoc($checkQuery);
+        $StockIdUpdated = $fetch_checkQuery['id'];
+
+        $stock_id = $StockIdUpdated;
 
         $updateQuery = mysqli_query($connect, "UPDATE cart_tbl_qty SET product_qty = '$product_qty', stock_id = '$stock_id', price = '$price' WHERE product_id = '$product_id' AND c_id = '$c_id' AND id = '$cart_id'");
     }
@@ -119,7 +124,7 @@ include('../_partials/header.php');
                                             <td style="width: 10%"></td>
 
                                             <td style="width: 25%">
-                                                <input style="width: 100%; border: none; border-bottom: 2px solid green" type="number" placeholder="Available in Stock: ' . $rowCartItems['stock_available'] . '"  class="form-control"  max="' . $rowCartItems['product_qty'] . '" min="1" id="product_qty" name="product_qty[]" onkeyup="if(this.value > ' . $rowCartItems['product_qty'] . ') this.value = null;" required>
+                                                <input style="width: 100%; border: none; border-bottom: 2px solid green" type="number" placeholder="Available in Stock: ' . $rowCartItems['stock_available'] . '"  class="form-control"  max="' . $rowCartItems['stock_available'] . '" min="1" id="product_qty" name="product_qty[]" onkeyup="if(this.value > ' . $rowCartItems['stock_available'] . ') this.value = null;" required>
                                             </td>
 
                                             <td style="width: 10%" class="text-center">

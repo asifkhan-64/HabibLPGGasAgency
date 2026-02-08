@@ -12,7 +12,7 @@ $no_models = '';
 $searchTags = $_POST["searchTags"];
 $modified = "%$searchTags%";
 
-$query = mysqli_query($connect, "SELECT * FROM `categories` WHERE category_type = 'Qty' AND stock_available > 0 AND category_name LIKE '$modified'");
+$query = mysqli_query($connect, "SELECT * FROM `categories` WHERE category_type = 'Qty' AND stock_available > 0 AND (category_name LIKE '$modified' OR id LIKE '$modified')");
 $rowcount = mysqli_num_rows($query);
 if ($rowcount < 1) {
     $output .= '
@@ -27,7 +27,7 @@ if ($rowcount < 1) {
                 
 
                 <div class="title pt-5">
-                ' . $rowStock['category_name'] . '
+                ' . $rowStock['id'] . ' - ' . $rowStock['category_name'] . '
                 </div>
 
                 <p class="title">Price: ' . $rowStock['sell_price'] . '</p>

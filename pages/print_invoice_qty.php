@@ -59,7 +59,7 @@ include '../_partials/header.php';
         <div class="row">
             <div class="col-sm-12">
                 <h5 class="page-title d-inline" style="font-size: 14px !important">Invoice Print (Quantity Based)</h5>
-                <a href="<?php echo 'print_invoice_cash_confirm.php?id='.$id.'&invoiceNo='.$invoiceNo.''?>" rel="noopener" target="_blank" class="btn btn-success float-right btn-lg mb-3"><i class="fas fa-print"></i> Print</a>
+                <a href="<?php echo 'print_invoice_cash_confirm_print.php?id='.$id.'&invoiceNo='.$invoiceNo.''?>" rel="noopener" target="_blank" class="btn btn-success float-right btn-lg mb-3"><i class="fas fa-print"></i> Print</a>
                 
                 <!-- <button onclick="window.print();" class="noPrint"> -->
             </div>

@@ -18,6 +18,7 @@ if (isset($_POST['generatePdf'])) {
     $cart_id_v        = $_POST['cart_id'];
     $product_qty_v    = $_POST['product_qty'];
     $product_id_v     = $_POST['product_id'];
+    $stock_id_v     = $_POST['stock_id'];
     $price_v          = $_POST['price'];
     $discount_v       = $_POST['discount'];
     $tax_v            = $_POST['tax'];
@@ -34,6 +35,7 @@ if (isset($_POST['generatePdf'])) {
     $arr_cart_id = array_values($cart_id_v);
     $arr_product_qty = array_values($product_qty_v);
     $arr_product_id = array_values($product_id_v);
+    $arr_stock_id = array_values($stock_id_v);
     $arr_price = array_values($price_v);
     $arr_discount = array_values($discount_v);
     $arr_tax = array_values($tax_v);
@@ -51,18 +53,31 @@ if (isset($_POST['generatePdf'])) {
     for ($i = 0; $i < sizeof($arr_cart_id); $i++) {
         $cart_id = $arr_cart_id[$i];
         $product_id = $arr_product_id[$i];
+        $stock_id = $arr_stock_id[$i];
         $price = $arr_price[$i];
         $product_qty = $arr_product_qty[$i];
         $discount = $arr_discount[$i];
         $taxProduct = $arr_tax[$i];
 
-        $updateStock = mysqli_query($connect, "UPDATE qty_stock_purchase SET product_qty = (product_qty-'$product_qty') WHERE id = '$product_id'");
+        $updateStock = mysqli_query($connect, "UPDATE qty_stock_purchase SET product_qty = (product_qty-'$product_qty') WHERE id = '$stock_id'");
         
-        $updateCategoryStock = mysqli_query($connect, "UPDATE categories SET stock_available = (stock_available-'$product_qty') WHERE id = '$product_id'");
+        if ($updateStock) {
+            $updateCategoryStock = mysqli_query($connect, "UPDATE categories SET stock_available = (stock_available-'$product_qty') WHERE id = '$product_id'");
 
-        $updateQuery = mysqli_query($connect, "UPDATE cart_tbl_qty SET sell_status = '1' WHERE product_id = '$product_id' AND c_id = '$c_id' AND id = '$cart_id'");
+            if ($updateCategoryStock) {
+                $updateQuery = mysqli_query($connect, "UPDATE cart_tbl_qty SET sell_status = '1' WHERE product_id = '$product_id' AND c_id = '$c_id' AND id = '$cart_id'");
 
-        $insertQuery = mysqli_query($connect, "INSERT INTO customer_qty_invoice(`cus_id`, `prod_id`, `prod_qty`, `prod_price`, `discount`, `tax`, `invoice_no`)VALUES('$c_id', '$product_id', '$product_qty', '$price', '$discount', '$taxProduct', '$newInvoice')");
+                if ($updateQuery) {
+                    $insertQuery = mysqli_query($connect, "INSERT INTO customer_qty_invoice(`cus_id`, `prod_id`, `prod_qty`, `prod_price`, `discount`, `tax`, `invoice_no`)VALUES('$c_id', '$product_id', '$product_qty', '$price', '$discount', '$taxProduct', '$newInvoice')");
+                }
+            }
+        }
+
+        
+
+        
+
+        
 
         $getProfitData = mysqli_query($connect, "SELECT * FROM qty_stock_purchase WHERE id = '$product_id'");
         $fetch_getProfitData = mysqli_fetch_assoc($getProfitData);
@@ -144,6 +159,7 @@ include('../_partials/header.php');
                                         <input type="hidden" name="cart_id[]" value="' . $rowCartItems['cartID'] . '" class="form-control" required>
                                         <input type="hidden" name="c_id" value="' . $c_id . '" class="form-control" required>
                                         <input type="hidden" name="product_id[]" value="' . $rowCartItems['product_id'] . '" class="form-control" required>
+                                        <input type="hidden" name="stock_id[]" value="' . $rowCartItems['stock_id'] . '" class="form-control" required>
                                         
                                         <input type="hidden" name="price[]" step=".01" value="' . $rowCartItems['price'] . '" class="form-control" required>
                                         <input type="hidden" name="product_qty[]" value="' . $rowCartItems['qty'] . '" class="form-control" required>

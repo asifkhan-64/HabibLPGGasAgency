@@ -174,8 +174,8 @@ $fet = mysqli_fetch_assoc($get);
                             <ul class="list-unstyled">
                                 <li><a href="vendor_add.php">Add Vendor</a></li>
                                 <li><a href="vendors_list.php">Vendor List</a></li>
-                                <!-- <li><a href="pay_vendor.php">Pay Vendor</a></li> -->
-                                <!-- <li><a href="pay_vendors_list.php">Pay Vendor List</a></li> -->
+                                <li><a href="pay_vendor.php">Pay Vendor</a></li>
+                                <li><a href="pay_vendors_list.php">Pay Vendor List</a></li>
                             </ul>
                         </li>
 

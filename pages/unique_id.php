@@ -26,8 +26,9 @@ include('../_partials/header.php');
 <div class="page-content-wrapper ">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12">
-                <h5 class="page-title">Categories</h5>
+            <div class="col-sm-12 mt-2">
+                <h5 class="page-title d-inline">Unique ID Category</h5>
+                <a href="<?php echo 'unique_id_print.php?id='.$id.''?>" rel="noopener" target="_blank" class="btn btn-success float-right btn-lg mb-3"><i class="fas fa-print"></i> Print</a>
             </div>
         </div>
         <!-- end row -->

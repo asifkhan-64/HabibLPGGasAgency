@@ -19,7 +19,7 @@ if (isset($_POST['makeInvoice'])) {
         $product = $products_arr[$i];
 
         $checkingQuery = mysqli_query($connect, "SELECT * FROM cart_tbl_weight WHERE c_id='$c_id' AND product_id = '$product'");
-        $deleteQuery = mysqli_query($connect, "DELETE FROM cart_tbl_weight WHERE c_id='$c_id' AND product_id = '$product'");
+        $deleteQuery = mysqli_query($connect, "DELETE FROM cart_tbl_weight WHERE c_id='$c_id' AND product_id = '$product' AND sell_status = '0'");
 
         $insertCart = mysqli_query($connect, "INSERT INTO cart_tbl_weight(c_id, product_id)VALUES('$c_id', '$product')");
 
@@ -187,7 +187,7 @@ include('../_partials/header.php');
                                     </div>
 
                                     <div class="title pt-5">
-                                    ' . $rowStock['category_name'] . '
+                                    ' . $rowStock['id'] . ' - ' . $rowStock['category_name'] . '
                                     </div>
 
                                     <p class="title">Price: ' . $rowStock['sell_price'] . '</p>
