@@ -21,7 +21,7 @@ include('../_partials/header.php');
             <div class="col-12">
                 <div class="card m-b-30">
                     <div class="card-body">
-                        <h4 class="mt-0 header-title">Customer List</h4>
+                        <h4 class="mt-0 header-title">Deleted Customers List</h4>
 
                         <table id="datatable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
@@ -34,14 +34,13 @@ include('../_partials/header.php');
                                     <th>Paid</th>
                                     <th>Total</th>
                                     <th>Cylinders</th>
-                                    <th class="text-center"> <i class="fa fa-edit"></i></th>
-                                    <th class="text-center"> <i class="fa fa-trash"></i></th>
+                                    <th class="text-center"> <i class="fa fa-refresh"></i></th>
                                     <th class="text-center"> Whatsapp</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $retCustomers = mysqli_query($connect, "SELECT * FROM `customer_add` WHERE customer_status = '1' ORDER BY c_id DESC");
+                                $retCustomers = mysqli_query($connect, "SELECT * FROM `customer_add` WHERE customer_status = '0' ORDER BY c_id DESC");
                                 $iteration = 1;
 
                                 $price = 0;
@@ -56,10 +55,7 @@ include('../_partials/header.php');
                                         <td>Rs. ' . $rowCustomers['total_dues'] . '</td>
                                         <td>Rs. ' . $rowCustomers['total_paid'] . '</td>
                                         <td>Rs. ' . $rowCustomers['total_sale'] . '</td>
-                                        <td class="text-center">' . $rowCustomers['remaining_cylinders'] . '</td>
-                                        
-                                        
-                                        <td class="text-center"><a href="customer_edit.php?id=' . $rowCustomers['c_id'] . '" type="button" class="btn text-white btn-warning waves-effect waves-light">Edit</a></td>';
+                                        <td class="text-center">' . $rowCustomers['remaining_cylinders'] . '</td>';
                                             
                                             $getCompanyDEtails = mysqli_query($connect, "SELECT * FROM `shop_info`");
                                             $rowCompanyDetails = mysqli_fetch_assoc($getCompanyDEtails);
@@ -93,7 +89,7 @@ include('../_partials/header.php');
                                             $whatsapp_url = "https://wa.me/92{$phone_number}?text={$message}";
 
                                             echo '
-                                            <td class="text-center"><a href="customer_delete.php?id=' . $rowCustomers['c_id'] . '" type="button" class="btn text-white btn-danger waves-effect waves-light">Delete</a></td>
+                                            <td class="text-center"><a href="customer_re_add.php?id=' . $rowCustomers['c_id'] . '" type="button" class="btn text-white btn-info waves-effect waves-light">Re-Add</a></td>
 
                                             <td>
                                                 <a href="'.$whatsapp_url.'" 

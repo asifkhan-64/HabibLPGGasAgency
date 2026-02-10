@@ -38,7 +38,7 @@ include('../_partials/header.php')
                                 <label class="col-sm-2 col-form-label">Customer</label>
                                 <div class="col-sm-10">
                                     <?php
-                                    $getcustomers = mysqli_query($connect, "SELECT * FROM customer_add");
+                                    $getcustomers = mysqli_query($connect, "SELECT * FROM customer_add WHERE customer_status = '1' ORDER BY customer_name ASC");
 
                                     echo '<select class="form-control comp" name="c_id" required>
                                     <option></option>';

@@ -184,6 +184,7 @@ $fet = mysqli_fetch_assoc($get);
                             <ul class="list-unstyled">
                                 <li><a href="customer_add.php">Add Customer</a></li>
                                 <li><a href="customers_list.php">Customer List</a></li>
+                                <li><a href="customers_deleted_list.php">Deleted Customers</a></li>
                             </ul>
                         </li>
 

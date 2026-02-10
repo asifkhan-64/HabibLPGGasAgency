@@ -95,7 +95,7 @@ include('../_partials/header.php')
                                 <label class="col-sm-2 col-form-label">Customer</label>
                                 <div class="col-sm-4">
                                     <?php
-                                    $getVendors = mysqli_query($connect, "SELECT * FROM customer_add");
+                                    $getVendors = mysqli_query($connect, "SELECT * FROM customer_add WHERE remaining_cylinders > 0");
                                     echo '<select class="form-control comp" id="customerId" name="c_id" required>
                                     <option></option>';
                                     while ($row = mysqli_fetch_assoc($getVendors)) {
